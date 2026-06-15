@@ -1,13 +1,13 @@
 interface Props {
   children: React.ReactNode,
-  style?: "primary" | "secondary",
+  style: "primary" | "secondary",
   className?: string
 }
 
-const Button = ({ children, style = "primary", className = "" }: Props) => {
+const Button = ({ children, style, className = "" }: Props) => {
   return (
     <button
-      className={`${style === 'primary' ? 'bg-secondary-500 hover:bg-secondary-600 focus:bg-secondary-600' : 'bg-background-100 hover:bg-neutral-800 focus:bg-neutral-800'} font-semibold px-3 py-2 rounded-md text-white transition-colors cursor-pointer ${className}`}
+      className={`${style === 'primary' ? 'bg-primary-500 hover:bg-primary-600 focus:bg-primary-600' : 'bg-background-100 hover:bg-neutral-800 focus:bg-neutral-800'} font-semibold px-3 py-3 rounded-md text-white transition-colors cursor-pointer flex items-center justify-center gap-2 ${className}`}
     >
       {children}
     </button>

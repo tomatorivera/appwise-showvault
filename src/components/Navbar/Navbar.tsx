@@ -12,7 +12,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-background-200 relative border-b border-gray-400">
+    <div className="bg-background-200 relative border-b border-gray-500">
       <nav className="max-w-6xl mx-auto px-3 py-4 flex justify-between items-center 6xl:px-0 text-primary-50">
         <section>
           <h1 className="font-bold text-xl font-zalando-expanded">ShowVault</h1>
@@ -36,7 +36,7 @@ const Navbar = () => {
             ${isMenuOpen ? 'block' : 'hidden'} flex-1 md:flex md:justify-between
             absolute md:relative 
             top-full left-0 w-full p-4 md:w-auto md:p-0
-          bg-background-200 border-t border-gray-40 md:bg-transparent md:border-t-0 
+          bg-background-200 border-t border-gray-500 md:bg-transparent md:border-t-0 
             peer-focus:block
           `}
         >
@@ -70,7 +70,7 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="max-w-6xl mx-auto pt-4 md:pt-0 flex flex-col md:flex-row gap-2 md:gap-2 md:mx-0">
-            <Button className="w-full md:w-auto flex items-center justify-center gap-2">
+            <Button className="w-full md:w-auto" style="primary">
               <Lineicons icon={User4Solid} size={20} />
               Ingresar
             </Button>
