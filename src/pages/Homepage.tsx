@@ -1,4 +1,16 @@
+import Carrousel from "../components/Carrousel/Carrousel"
 import Hero from "../components/Hero/Hero"
+
+const images = [
+  'https://static.tvmaze.com/uploads/images/medium_portrait/610/1525272.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/163/407679.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/0/15.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/143/358967.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/490/1226764.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/477/1194981.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/498/1245275.jpg',
+  'https://static.tvmaze.com/uploads/images/medium_portrait/0/73.jpg',
+]
 
 const Homepage = () => {
   return (
@@ -9,6 +21,26 @@ const Homepage = () => {
       "
     >
       <Hero />
+
+      {/* Todo: implementar show card */}
+      <Carrousel 
+        items={images}
+        renderItem={(image) => (
+          <article
+            key={image}
+            className="
+              relative shrink-0 snap-center overflow-hidden
+              w-[80%] sm:w-[50%] sm:h-120 md:w-48 md:h-72
+              rounded-lg border border-primary-200/20
+              bg-background-100
+              hover:-translate-y-2 focus:-translate-y-2 transition-transform
+            "
+          >
+            <img src={image} alt="" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-linear-to-t from-background-200/80 via-transparent to-transparent" />
+          </article>
+        )}
+      />
     </main>
   )
 }
