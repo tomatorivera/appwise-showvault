@@ -14,6 +14,12 @@
   }
 }
 
+@layer utilities {
+  .hamburguer-toggle {
+    @apply [&>div]:h-0 [&>div]:bg-white [&>div]:before:translate-y-0 [&>div]:before:rotate-45 [&>div]:after:translate-y-0 [&>div]:after:-rotate-45;
+  }
+}
+
 @theme {
   --color-primary-50: #f2efff;
   --color-primary-100: #e2dfff;
@@ -47,6 +53,9 @@
   --color-tertiary-700: #7b2f00;
   --color-tertiary-800: #571f00;
   --color-tertiary-900: #351000;
+
+  --color-background-100: #2a2933;
+  --color-background-200: #13121b;
 
   --font-zalando-expanded: 'Zalando Sans Expanded';
 }
