@@ -6,8 +6,8 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import jsxA11y from "eslint-plugin-jsx-a11y";
-// import prettierConfig from "eslint-config-prettier";
-// import prettierPlugin from "eslint-plugin-prettier";
+import prettierConfig from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
 
 export default defineConfig([
   {
@@ -17,12 +17,12 @@ export default defineConfig([
       react.configs.flat.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
-      // prettierConfig,
+      prettierConfig,
     ],
     plugins: {
       react,
       "jsx-a11y": jsxA11y,
-      // prettierPlugin,
+      prettierPlugin,
     },
     languageOptions: {
       globals: globals.browser,
