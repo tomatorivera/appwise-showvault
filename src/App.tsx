@@ -1,7 +1,7 @@
 // import { Home2Solid } from "@lineiconshq/free-icons"
 // import Lineicons from "@lineiconshq/react-lineicons"
-import Footer from "./components/Footer/Footer"
-import Navbar from "./components/Navbar/Navbar"
+import Footer from "./components/shared/Footer"
+import Navbar from "./components/shared/Navbar"
 import Homepage from "./pages/Homepage"
 
 function App() {

@@ -1,12 +1,12 @@
 import Lineicons from "@lineiconshq/react-lineicons"
-import Button from "../Button"
+import Button from "../shared/Button"
 import { Books2Solid, MenuCheesburgerSolid } from "@lineiconshq/free-icons"
 
 interface Props {
   className?: string
 }
 
-const Hero = ({ className = "" }: Props) => {
+const HomeHero = ({ className = "" }: Props) => {
   return (
     <header className={`flex flex-col gap-10 text-primary-50 py-30 max-w-lg mx-auto ${className}`}>
       <section className="grid place-content-center text-center px-4">
@@ -32,4 +32,4 @@ const Hero = ({ className = "" }: Props) => {
   )
 }
 
-export default Hero
+export default HomeHero

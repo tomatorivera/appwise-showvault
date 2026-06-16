@@ -1,8 +1,8 @@
 import Lineicons from "@lineiconshq/react-lineicons"
-import Carrousel from "../components/Carrousel/Carrousel"
-import Hero from "../components/Hero/Hero"
+import Carrousel from "../components/homepage/Carrousel"
+import HomeHero from "../components/homepage/HomeHero"
 import { Bookmark1Outlined, Rocket5Solid, Search1Outlined, TextParagraphSolid } from "@lineiconshq/free-icons"
-import InfoCard from "../components/InfoCard"
+import InfoCard from "../components/homepage/InfoCard"
 
 const images = [
   'https://static.tvmaze.com/uploads/images/medium_portrait/610/1525272.jpg',
@@ -24,7 +24,7 @@ const Homepage = () => {
         px-4
       "
     >
-      <Hero />
+      <HomeHero />
 
       {/* Todo: implementar show card */}
       <Carrousel

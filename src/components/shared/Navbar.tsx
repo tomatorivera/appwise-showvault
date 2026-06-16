@@ -1,7 +1,7 @@
 import { Home2Outlined, MenuCheesburgerSolid, Search2Outlined, User4Solid } from "@lineiconshq/free-icons"
 import Lineicons from "@lineiconshq/react-lineicons"
-import Button from "../Button"
-import SearchBar from "../SearchBar"
+import Button from "./Button"
+import SearchBar from "./SearchBar"
 import { useState } from "react"
 
 const Navbar = () => {
