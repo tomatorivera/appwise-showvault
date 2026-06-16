@@ -32,6 +32,7 @@ export type SeasonDTO = {
   premiereDate: string | null
   endDate: string | null
   image: { medium: string; original: string } | null
+  summary: string | null
 }
 
 export type Season = {
@@ -41,10 +42,11 @@ export type Season = {
   premiereDate: string
   endDate: string
   image: string
+  summary: string
 }
 
 export type CastMemberDTO = {
-  person: { id: number; name: string; image: { medium: string } | null }
+  person: { id: number; name: string; image: { medium: string, original: string } | null }
   character: { name: string }
 }
 
