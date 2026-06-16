@@ -3,10 +3,11 @@ import MainLayout from "../layouts/MainLayout";
 import Homepage from "../pages/Homepage";
 import Browsepage from "../pages/Browsepage";
 import ShowDetailpage from "../pages/ShowDetailpage";
-import MyListPage from "../pages/MyListPage";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import OnlyNavLayout from "../layouts/OnlyNavLayout";
+import ProtectedRoute from "../components/shared/ProtectedRoute";
+import MyListPage from "../pages/MyListPage";
 
 export const router = createBrowserRouter([
   {
@@ -25,8 +26,13 @@ export const router = createBrowserRouter([
         path: '/shows/:id',
       },
       {
-        element: <MyListPage />,
-        path: '/my-list',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            element: <MyListPage />,
+            path: '/my-list',
+          },
+        ],
       },
     ],
   },

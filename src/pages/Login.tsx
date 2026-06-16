@@ -1,6 +1,21 @@
+import { useEffect } from "react";
 import LoginForm from "../components/login/LoginForm"
+import { useAppStore } from "../store/appStore"
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isAuthenticated = useAppStore((state) => state.isAuthenticated);
+
+  useEffect(() => {
+    if (!isAuthenticated)
+      return
+
+    const from = (location.state as { from?: string })?.from ?? '/'
+    navigate(from, { replace: true })
+  }, [isAuthenticated])
+
   return (
     <div
       className="
