@@ -1,8 +1,11 @@
 import { Home2Solid, XmarkCircleOutlined } from '@lineiconshq/free-icons'
 import Lineicons from '@lineiconshq/react-lineicons'
 import Button from '../components/shared/Button'
+import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="grid place-items-center overflow-hidden bg-background-200 px-4 py-15 text-primary-50 min-h-[calc(100vh-81px)]">
       <section className="relative flex w-full max-w-xl flex-col items-center text-center">
@@ -22,7 +25,7 @@ const NotFound = () => {
         </p>
 
         <div className="mt-8 flex justify-center w-full max-w-md flex-col gap-3 sm:flex-row">
-          <Button style="primary">
+          <Button style="primary" onClick={() => navigate('/')}>
             <Lineicons icon={Home2Solid} size={20} />
             Volver al inicio
           </Button>

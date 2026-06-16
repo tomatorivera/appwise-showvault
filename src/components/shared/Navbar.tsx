@@ -3,8 +3,10 @@ import Lineicons from "@lineiconshq/react-lineicons"
 import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -44,35 +46,35 @@ const Navbar = () => {
         >
           <ul className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-3 my-4 lg:my-0 lg:gap-4 lg:mx-0 lg:ps-6">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="relative before:content-[''] before:absolute before:-bottom-0.5 before:w-0 before:h-px before:bg-primary-300 hover:before:w-full focus:before:w-full before:transition-all hover:text-primary-200 focus:text-primary-200 transition-colors flex items-center gap-2"
               >
                 <Lineicons icon={Home2Outlined} size={20} />
                 Inicio
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/shows"
                 className="relative before:content-[''] before:absolute before:-bottom-0.5 before:w-0 before:h-px before:bg-primary-300 hover:before:w-full focus:before:w-full before:transition-all hover:text-primary-200 focus:text-primary-200 transition-colors flex items-center gap-2"
               >
                 <Lineicons icon={Search2Outlined} size={20} />
                 Explorar
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/my-list"
                 className="relative before:content-[''] before:absolute before:-bottom-0.5 before:w-0 before:h-px before:bg-primary-300 hover:before:w-full focus:before:w-full before:transition-all hover:text-primary-200 focus:text-primary-200 transition-colors flex items-center gap-2"
               >
                 <Lineicons icon={MenuCheesburgerSolid} size={20} />
                 Mi lista
-              </a>
+              </Link>
             </li>
           </ul>
           <div className="max-w-6xl mx-auto pt-4 lg:pt-0 flex flex-col lg:flex-row gap-2 lg:gap-2 lg:mx-0">
-            <Button className="w-full lg:w-auto" style="primary">
+            <Button className="w-full lg:w-auto" style="primary" onClick={() => navigate("/login")}>
               <Lineicons icon={User4Solid} size={20} />
               Ingresar
             </Button>
