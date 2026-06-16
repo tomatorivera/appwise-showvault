@@ -4,13 +4,25 @@ import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { useAppStore } from "../../store/appStore"
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
+  const isAuthenticated = useAppStore((state) => state.isAuthenticated)
+  const logout = useAppStore((state) => state.logout)
+
+  const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+  
+  const handleLogout = () => {
+    if (confirm('¿Está seguro de que desea cerrar sesión?'))
+    {
+      logout()
+      navigate('/login')
+    }
   }
 
   return (
@@ -20,7 +32,7 @@ const Navbar = () => {
           <h1 className="font-bold text-xl font-zalando-expanded">ShowVault</h1>
         </section>
         <button
-          onClick={toggleMenu}
+          onClick={handleToggleMenu}
           className="lg:hidden grid place-content-center cursor-pointer ps-6"
         >
           <div
@@ -74,10 +86,28 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="max-w-6xl mx-auto pt-4 lg:pt-0 flex flex-col lg:flex-row gap-2 lg:gap-2 lg:mx-0">
-            <Button className="w-full lg:w-auto" style="primary" onClick={() => navigate("/login")}>
-              <Lineicons icon={User4Solid} size={20} />
-              Ingresar
-            </Button>
+            {!isAuthenticated && (
+              <Button
+                className="w-full lg:w-auto"
+                style="primary"
+                onClick={() => navigate('/login')}
+              >
+                <Lineicons icon={User4Solid} size={20} />
+                Ingresar
+              </Button>
+            )}
+
+            {isAuthenticated && (
+              <Button
+                className="w-full lg:w-auto"
+                style="secondary"
+                onClick={handleLogout}
+              >
+                <Lineicons icon={User4Solid} size={20} />
+                Cerrar sesión
+              </Button>
+            )}
+
             <SearchBar />
           </div>
         </section>
