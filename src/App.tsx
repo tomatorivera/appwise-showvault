@@ -1,5 +1,6 @@
 // import { Home2Solid } from "@lineiconshq/free-icons"
 // import Lineicons from "@lineiconshq/react-lineicons"
+import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage"
 
@@ -19,6 +20,8 @@ function App() {
       </main> */}
 
       <Homepage />
+      
+      <Footer />
     </>
   )
 }
