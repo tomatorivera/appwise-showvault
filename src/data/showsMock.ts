@@ -1,4 +1,6 @@
-export const MOCK_SHOWS = [
+import type { ShowDTO } from "../services/shows/show.types";
+
+export const MOCK_SHOWS: ShowDTO[] = [
   {
     id: 1,
     name: 'Under the Dome',

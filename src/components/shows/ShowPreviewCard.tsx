@@ -1,31 +1,27 @@
+import type { Show } from "../../services/shows/show.types"
+
 interface Props {
-  // Todo: crear type Show
-  name: string,
-  rating: number,
-  type: string,
-  status: string,
-  genres: string[],
-  image?: string,
-  network: string,
-  premiered: string | null
+  show: Show,
+  className?: string
 }
 
-export default function ShowPreviewCard({ name, rating, type, status, genres, image, network, premiered }: Props) {
+export default function ShowPreviewCard({ show, className = "" }: Props) {
   return (
     <article
-      className="
+      className={`
         group relative overflow-hidden rounded-2xl
         bg-background-100 border border-primary-500/15
         transition-all duration-300
         hover:-translate-y-2
         hover:border-primary-500/40
         hover:shadow-[0_10px_40px_rgba(103,96,253,0.15)]
-      "
+        ${className}
+      `}
     >
       <div className="relative aspect-2/3 overflow-hidden">
         <img
-          src={image || '/placeholder.jpg'}
-          alt={name}
+          src={show.image}
+          alt={`Cartelera del show "${show.title}"`}
           className="
             h-full w-full object-cover
             transition-transform duration-500
@@ -54,7 +50,7 @@ export default function ShowPreviewCard({ name, rating, type, status, genres, im
             border border-primary-400/20
           "
         >
-          <span className="me-0.5">★</span> {rating.toFixed(1)}
+          <span className="me-0.5">★</span> {show.rating.toFixed(1)}
         </div>
       </div>
 
@@ -69,20 +65,20 @@ export default function ShowPreviewCard({ name, rating, type, status, genres, im
               text-secondary-200
             "
           >
-            {type}
+            {show.type}
           </span>
 
           <span
             className={`
               rounded-full px-2 py-1 text-xs font-medium
               ${
-                status === 'Running'
+                show.status === 'Running'
                   ? 'bg-green-500/40 text-green-300'
                   : 'bg-gray-500/75 text-gray-300'
               }
             `}
           >
-            {status}
+            {show.status}
           </span>
         </div>
 
@@ -93,16 +89,15 @@ export default function ShowPreviewCard({ name, rating, type, status, genres, im
             text-primary-50
           "
         >
-          {name}
+          {show.title}
         </h3>
 
         <p className="mt-1 text-sm font-medium text-primary-100/80">
-          {premiered?.slice(0, 4) ?? 'TBA'}
-          {network && ` • ${network}`}
+          {`${show.year} • ${show.network}`}
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">
-          {genres.slice(0, 3).map((genre) => (
+          {show.genres.slice(0, 3).map((genre) => (
             <span
               key={genre}
               className="

@@ -1,6 +1,7 @@
 import BrowseHero from "../components/browsepage/BrowseHero"
 import ShowPreviewCard from "../components/shows/ShowPreviewCard"
 import { MOCK_SHOWS } from "../data/showsMock"
+import { toShow } from "../services/shows/shows.mapper"
 
 const Browsepage = () => {
   return (
@@ -18,17 +19,10 @@ const Browsepage = () => {
           pb-10
         "
       >
-        {MOCK_SHOWS.map((show) => (
+        {MOCK_SHOWS.map(toShow).map((show) => (
           <ShowPreviewCard 
             key={show.id} 
-            name={show.name}
-            type={show.type}
-            genres={show.genres}
-            status={show.status}
-            premiered={show.premiered}
-            network={show.network.name}
-            image={show.image.medium}
-            rating={show.rating.average}
+            show={show}
           />
         ))}
       </div>

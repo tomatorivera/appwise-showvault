@@ -3,17 +3,9 @@ import Carrousel from "../components/homepage/Carrousel"
 import HomeHero from "../components/homepage/HomeHero"
 import { Bookmark1Outlined, Rocket5Solid, Search1Outlined, TextParagraphSolid } from "@lineiconshq/free-icons"
 import InfoCard from "../components/homepage/InfoCard"
-
-const images = [
-  'https://static.tvmaze.com/uploads/images/medium_portrait/610/1525272.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/163/407679.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/0/15.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/143/358967.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/490/1226764.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/477/1194981.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/498/1245275.jpg',
-  'https://static.tvmaze.com/uploads/images/medium_portrait/0/73.jpg',
-]
+import { MOCK_SHOWS } from "../data/showsMock"
+import ShowPreviewCard from "../components/shows/ShowPreviewCard"
+import { toShow } from "../services/shows/shows.mapper"
 
 const Homepage = () => {
   return (
@@ -26,26 +18,14 @@ const Homepage = () => {
     >
       <HomeHero />
 
-      {/* Todo: implementar show card */}
       <Carrousel
-        items={images}
-        renderItem={(image) => (
-          <article
-            key={image}
-            className="
-              relative shrink-0 snap-center overflow-hidden
-              w-[80%] sm:w-[50%] sm:h-120 md:w-48 md:h-72
-              rounded-lg border border-primary-200/20
-              bg-background-100
-              transition-all duration-300
-              hover:-translate-y-2 focus:-translate-y-2
-              hover:border-primary-500/40
-              hover:shadow-[0_10px_40px_rgba(103,96,253,0.15)]
-            "
-          >
-            <img src={image} alt="" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-linear-to-t from-background-200/80 via-transparent to-transparent" />
-          </article>
+        items={MOCK_SHOWS.map(toShow)}
+        renderItem={(show) => (
+          <ShowPreviewCard
+            key={show.id}
+            show={show}
+            className="relative shrink-0 snap-center overflow-hidden w-[80%] sm:w-[50%] sm:h-120 md:w-75 md:h-100"
+          />
         )}
       />
 
