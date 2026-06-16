@@ -7,14 +7,17 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx --ignore-pattern dist --fix",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
     "prepare": "husky"
   },
   "dependencies": {
+    "@lineiconshq/free-icons": "^1.0.6",
+    "@lineiconshq/react-lineicons": "^1.0.5",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.18.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
