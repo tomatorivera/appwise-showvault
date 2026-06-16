@@ -19,7 +19,10 @@ const Navbar = () => {
   
   const handleLogout = () => {
     if (confirm('¿Está seguro de que desea cerrar sesión?'))
+    {
       logout()
+      navigate('/login')
+    }
   }
 
   return (
