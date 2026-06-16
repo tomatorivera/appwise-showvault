@@ -20,8 +20,8 @@ const Login = () => {
     <div
       className="
         bg-[radial-gradient(ellipse_90%_35%_at_15%_0%,color-mix(in_srgb,var(--color-primary-600)_55%,transparent)_0%,transparent_60%),radial-gradient(ellipse_70%_45%_at_15%_25%,color-mix(in_srgb,var(--color-primary-500)_18%,transparent)_0%,transparent_65%),linear-gradient(180deg,var(--color-background-100)_0%,var(--color-background-200)_18%,var(--color-background-200)_100%)]
-        px-4 py-8 text-primary-50
-        min-h-[calc(100vh-81px)]
+        px-4 text-primary-50
+        min-h-screen
         grid place-items-center
       "
     >
@@ -46,6 +46,9 @@ const Login = () => {
             Regístrate gratis
           </a>
         </p>
+        <button onClick={() => navigate('/')} className="mt-3 text-sm font-semibold text-primary-200 hover:text-primary-100 transition-colors cursor-pointer">
+          ← Volver al inicio
+        </button>
       </div>
     </div>
   )

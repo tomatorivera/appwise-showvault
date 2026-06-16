@@ -40,13 +40,13 @@ export const router = createBrowserRouter([
     element: <OnlyNavLayout />,
     children: [
       {
-        element: <Login />,
-        path: '/login',
-      },
-      {
         element: <NotFound />,
         path: '*',
       },
     ],
+  },
+  {
+    element: <Login />,
+    path: '/login',
   },
 ])
