@@ -2,9 +2,13 @@ import Lineicons from "@lineiconshq/react-lineicons"
 import Button from "../Button"
 import { Books2Solid, MenuCheesburgerSolid } from "@lineiconshq/free-icons"
 
-const Hero = () => {
+interface Props {
+  className?: string
+}
+
+const Hero = ({ className = "" }: Props) => {
   return (
-    <header className="flex flex-col gap-10 text-primary-50 py-30 max-w-lg mx-auto">
+    <header className={`flex flex-col gap-10 text-primary-50 py-30 max-w-lg mx-auto ${className}`}>
       <section className="grid place-content-center text-center px-4">
         <h1 className="font-bold font-zalando-expanded text-4xl mb-2">
           ShowVault
