@@ -4,8 +4,8 @@ import Button from '../components/shared/Button'
 
 const NotFound = () => {
   return (
-    <main className="grid place-items-center overflow-hidden bg-background-200 px-4 py-15 text-primary-50">
-      <section className="relative min-h-[calc(100vh-350px)] flex w-full max-w-xl flex-col items-center text-center">
+    <main className="grid place-items-center overflow-hidden bg-background-200 px-4 py-15 text-primary-50 min-h-[calc(100vh-81px)]">
+      <section className="relative flex w-full max-w-xl flex-col items-center text-center">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,color-mix(in_srgb,var(--color-primary-500)_16%,transparent),transparent_55%)]" />
 
         <p className="select-none text-[8rem] font-black leading-none text-grey/20 md:text-[10rem] animate animate-bounce-soft">
