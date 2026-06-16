@@ -37,7 +37,10 @@ const Homepage = () => {
               w-[80%] sm:w-[50%] sm:h-120 md:w-48 md:h-72
               rounded-lg border border-primary-200/20
               bg-background-100
-              hover:-translate-y-2 focus:-translate-y-2 transition-transform
+              transition-all duration-300
+              hover:-translate-y-2 focus:-translate-y-2
+              hover:border-primary-500/40
+              hover:shadow-[0_10px_40px_rgba(103,96,253,0.15)]
             "
           >
             <img src={image} alt="" className="h-full w-full object-cover" />
@@ -48,7 +51,11 @@ const Homepage = () => {
 
       <section className="py-15 max-w-6xl mx-auto">
         <div className="text-2xl text-primary-50 font-semibold font-zalando-expanded flex items-center gap-2">
-          <Lineicons icon={Rocket5Solid} size={30} />
+          <Lineicons
+            icon={Rocket5Solid}
+            size={30}
+            className="text-primary-400"
+          />
           <h2 className="relative before:content-[''] before:absolute before:-bottom-1.25 before:bg-primary-50 before:h-1 before:w-1/3">
             Potenciá tu experiencia
           </h2>

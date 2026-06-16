@@ -39,6 +39,7 @@ const Navbar = () => {
           bg-background-200 border-t border-gray-500 lg:bg-transparent lg:border-t-0 
             peer-focus:block
             shadow-2xl shadow-black lg:shadow-none
+            z-20
           `}
         >
           <ul className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-3 my-4 lg:my-0 lg:gap-4 lg:mx-0 lg:ps-6">

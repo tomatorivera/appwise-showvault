@@ -20,6 +20,17 @@
   }
 }
 
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 @theme {
   --color-primary-50: #f2efff;
   --color-primary-100: #e2dfff;
@@ -60,4 +71,6 @@
   --color-grey: #c7c4d8;
 
   --font-zalando-expanded: 'Zalando Sans Expanded';
+
+  --animate-bounce-soft: bounce-soft 2s infinite;
 }
