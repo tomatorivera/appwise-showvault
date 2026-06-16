@@ -71,7 +71,7 @@ export type ShowPreview = Pick<
 >
 
 export type SavedShow = Show & {
-  status: WatchStatus
+  watchStatus: WatchStatus
   addedAt: number // Date.now()
 }
 

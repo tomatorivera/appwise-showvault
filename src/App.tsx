@@ -2,9 +2,10 @@
 // import Lineicons from "@lineiconshq/react-lineicons"
 import Footer from "./components/shared/Footer"
 import Navbar from "./components/shared/Navbar"
+import MyListPage from "./pages/MyListPage"
 // import Homepage from "./pages/Homepage"
 // import Browsepage from "./pages/Browsepage"
-import ShowDetailpage from "./pages/ShowDetailpage"
+// import ShowDetailpage from "./pages/ShowDetailpage"
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
 
       {/* <Homepage /> */}
       {/* <Browsepage /> */}
-      <ShowDetailpage />
+      {/* <ShowDetailpage /> */}
+      <MyListPage />
 
       <Footer />
     </>
