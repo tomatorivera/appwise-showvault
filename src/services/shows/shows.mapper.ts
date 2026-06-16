@@ -1,4 +1,4 @@
-import type { Show, ShowDTO } from "./show.types";
+import type { CastMember, CastMemberDTO, Season, SeasonDTO, Show, ShowDTO } from "./show.types";
 
 export function toShow(dto: ShowDTO): Show {
   return {
@@ -12,5 +12,25 @@ export function toShow(dto: ShowDTO): Show {
     summary: dto.summary?.replace(/<[^>]*>/g, '') ?? 'Sin descripción',
     network: dto.network?.name ?? 'Unknown',
     type: dto.type
+  }
+}
+
+export function toSeason(dto: SeasonDTO): Season {
+  return {
+    id: dto.id,
+    number: dto.number,
+    episodeOrder: dto.episodeOrder ?? 0,
+    premiereDate: dto.premiereDate ?? 'Desconocido',
+    endDate: dto.endDate ?? 'Desconocido',
+    image: dto.image?.medium ?? ''
+  }
+}
+
+export function toCastMember(dto: CastMemberDTO): CastMember {
+  return {
+    id: dto.person.id,
+    realName: dto.person.name,
+    characterName: dto.character.name,
+    image: dto.person.image?.medium ?? ''
   }
 }

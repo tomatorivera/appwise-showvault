@@ -25,7 +25,52 @@ export type Show = {
   type: string
 }
 
+export type SeasonDTO = {
+  id: number
+  number: number
+  episodeOrder: number | null
+  premiereDate: string | null
+  endDate: string | null
+  image: { medium: string; original: string } | null
+}
+
+export type Season = {
+  id: number
+  number: number
+  episodeOrder: number
+  premiereDate: string
+  endDate: string
+  image: string
+}
+
+export type CastMemberDTO = {
+  person: { id: number; name: string; image: { medium: string } | null }
+  character: { name: string }
+}
+
+export type CastMember = {
+  id: number
+  realName: string
+  characterName: string
+  image: string
+}
+
 export type ShowPreview = Pick<
   Show,
-  'id' | 'title' | 'status' | 'rating' | 'type' | 'genres' | 'image' | 'year' | 'network'
+  | 'id'
+  | 'title'
+  | 'status'
+  | 'rating'
+  | 'type'
+  | 'genres'
+  | 'image'
+  | 'year'
+  | 'network'
 >
+
+export type SavedShow = Show & {
+  status: WatchStatus
+  addedAt: number // Date.now()
+}
+
+export type WatchStatus = 'plan-to-watch' | 'watching' | 'completed'
