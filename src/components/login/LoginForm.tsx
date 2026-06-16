@@ -1,15 +1,30 @@
-import { Locked2Solid, Paperclip1Solid } from "@lineiconshq/free-icons"
+import { Locked2Solid, Paperclip1Solid, Spinner3Solid } from "@lineiconshq/free-icons"
 import Lineicons from "@lineiconshq/react-lineicons"
 import Button from "../shared/Button"
+import { useAppStore } from "../../store/appStore"
 
 const LoginForm = () => {
+  const login = useAppStore((state) => state.login)
+  const isLoggingIn = useAppStore((state) => state.isLoggingIn)
+  const error = useAppStore((state) => state.error)
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const formData = new FormData(e.currentTarget);
+    login(
+      formData.get('email') as string,
+      formData.get('pass') as string
+    )
+  }
+  
   return (
     <section className="w-full rounded-xl border border-gray-400/50 bg-background-100/70 p-6 shadow-2xl shadow-black/30">
       <h2 className="mb-6 text-2xl font-bold border-b border-gray-400/50 pb-2">
         Ingresar
       </h2>
 
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <section>
           <label className="mb-1.5 block text-sm font-semibold text-grey">
             Correo electrónico
@@ -23,6 +38,8 @@ const LoginForm = () => {
             />
             <input
               type="email"
+              id="email"
+              name="email"
               placeholder="tu@email.com"
               aria-label="Correo electrónico"
               className="w-full bg-transparent text-sm text-primary-50 outline-none placeholder:text-grey/50 transition-colors"
@@ -52,6 +69,8 @@ const LoginForm = () => {
             />
             <input
               type="password"
+              id="pass"
+              name="pass"
               placeholder="••••••••"
               aria-label="Contraseña"
               className="w-full bg-transparent text-sm text-primary-50 outline-none placeholder:text-grey/50"
@@ -59,15 +78,23 @@ const LoginForm = () => {
           </div>
         </section>
 
-        <Button
-          style="primary"
-          onClick={() => alert('Form enviado')}
-          type="submit"
-          className="mt-5 w-full"
-        >
-          Ingresar
-        </Button>
+        {!isLoggingIn && (
+          <Button style="primary" type="submit" className="mt-5 w-full">
+            Ingresar
+          </Button>
+        )}
+
+        {isLoggingIn && (
+          <Button style="secondary" className="mt-5 w-full" disabled={true}>
+            <Lineicons icon={Spinner3Solid} className="animate animate-spin" />
+            Ingresando...
+          </Button>
+        )}
       </form>
+
+      {error && (
+        <p className="mt-5 text-center text-red-500 font-semibold">{error}</p>
+      )}
 
       <section className="mt-6 rounded-md border border-secondary-400/30 bg-secondary-900/30 p-4">
         <p className="mb-2 flex items-center gap-2 text-sm font-bold text-primary-100">

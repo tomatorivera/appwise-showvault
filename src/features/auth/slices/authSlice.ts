@@ -6,9 +6,12 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   user: null,
   isAuthenticated: false,
   error: null,
+  isLoggingIn: false,
   
   login(email: string, password: string) {
-    return new Promise((resolve) => {
+    set({ isLoggingIn: true, error: null }, false)
+
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
         const existente = MOCK_USERS.find(
           (u) => u.email === email && u.password === password
@@ -19,6 +22,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
             {
               user: existente,
               isAuthenticated: true,
+              isLoggingIn: false,
               error: null
             },
             false
@@ -26,7 +30,8 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
         } else {
           set(
             {
-              error: 'Credenciales inválidas',
+              isLoggingIn: false,
+              error: 'Las credenciales ingresadas son inválidas',
             },
             false
           )
