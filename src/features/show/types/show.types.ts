@@ -1,5 +1,8 @@
 /********* MODELS *********/
 
+import type { CastMember } from "./cast.types"
+import type { Season } from "./season.types"
+
 export type ShowDTO = {
   id: number
   name: string
@@ -66,4 +69,6 @@ export interface GetShowsParams {
 export interface IShowService {
   getShows: (search?: string, page?: number) => Promise<Show[]>
   getShow: (id: number) => Promise<Show>
+  getShowSeasons: (id: number) => Promise<Season[]>
+  getShowCasting: (id: number) => Promise<CastMember[]>
 }

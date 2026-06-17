@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { Show } from '../types/show.types'
 
 interface Props {
@@ -7,7 +8,8 @@ interface Props {
 
 export default function ShowPreviewCard({ show, className = '' }: Props) {
   return (
-    <article
+    <Link
+      to={`/shows/${show.id}`}
       className={`
         group relative overflow-hidden rounded-2xl
         bg-background-100 border border-primary-500/15
@@ -113,6 +115,6 @@ export default function ShowPreviewCard({ show, className = '' }: Props) {
           ))}
         </div>
       </div>
-    </article>
+    </Link>
   )
 }

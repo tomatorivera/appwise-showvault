@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from '../../shared/hooks/useDebounce'
 import { useSearchParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
-import ShowPreviewCardSkeleton from '../../features/show/components/ShowPreviewCardSkeleton'
+import ShowPreviewCardSkeleton from '../../features/show/components/skeletons/ShowPreviewCardSkeleton'
 import { useShowFilters } from '../../features/show/hooks/useShowFilters'
 import Paginator from '../../shared/ui/Paginator'
 

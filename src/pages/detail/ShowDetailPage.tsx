@@ -1,21 +1,32 @@
 import DetailHero from '../../features/show/components/DetailHero'
 import DetailSection from './DetailSection'
-import { MOCK_SEASONS } from '../../features/show/data/seasonsMock'
 import Button from '../../shared/ui/Button'
-import { MOCK_SHOWS } from '../../features/show/data/showsMock'
-import { MOCK_CAST } from '../../features/show/data/castMock'
 import SeasonPreviewCard from '../../features/show/components/SeasonPreviewCard'
 import CastMemberCard from '../../features/show/components/CastMemberCard'
 import ShowTechnicalDetailsCard from '../../features/show/components/ShowTechnicalDetailsCard'
+import { useShow } from '../../features/show/hooks/useShow'
+import DetailHeroSkeleton from '../../features/show/components/skeletons/DetailHeroSkeleton'
+import { Skeleton } from '../../shared/ui/Skeleton'
+import SeasonPreviewCardSkeleton from '../../features/show/components/skeletons/SeasonPreviewCardSkeleton'
+import CastMemberCardSkeleton from '../../features/show/components/skeletons/CastMemberCardSkeleton'
+import { useParams } from 'react-router-dom'
+import { useShows } from '../../features/show/hooks/useShows'
+import { useMemo } from 'react'
 import ShowRecommendedCard from '../../features/show/components/ShowRecommendedCard'
-import { toSeason } from '../../features/show/mappers/season.mapper'
-import { toCastMember } from '../../features/show/mappers/cast.mapper'
-import { toShow } from '../../features/show/mappers/show.mapper'
 
 const ShowDetailPage = () => {
-  const show = toShow(MOCK_SHOWS[0])
-  const seasons = MOCK_SEASONS.map(toSeason)
-  const cast = MOCK_CAST.map(toCastMember)
+  const { id } = useParams<{ id: string }>()
+  const { show, seasons, cast } = useShow(Number(id))
+  const { data: shows, isPending, isSuccess } = useShows()
+
+  const suggestedShows = useMemo(() => {
+    if (!shows || !show.data) return []
+
+    return shows
+      .filter((s) => s.genres.some((genre) => show.data.genres.includes(genre)))
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 3)
+  }, [shows, show.data])
 
   return (
     <div
@@ -24,41 +35,60 @@ const ShowDetailPage = () => {
         md:bg-[radial-gradient(ellipse_90%_35%_at_15%_0%,color-mix(in_srgb,var(--color-primary-600)_55%,transparent)_0%,transparent_60%),radial-gradient(ellipse_70%_45%_at_15%_25%,color-mix(in_srgb,var(--color-primary-500)_18%,transparent)_0%,transparent_65%),linear-gradient(180deg,var(--color-background-100)_0%,var(--color-background-200)_18%,var(--color-background-200)_100%)]
       "
     >
-      <DetailHero show={show} />
+      {show.isLoading && <DetailHeroSkeleton />}
+      {show.isSuccess && <DetailHero show={show.data} />}
 
       <main className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px] max-w-6xl mx-auto px-4 py-6">
         <section className="flex flex-col gap-6">
           <Button style="primary">+ Agregar a mi lista</Button>
 
           {/* Sinopsis */}
-          <DetailSection title="Sinopsis" body={show.summary} />
+          {show.isLoading && <Skeleton className="w-full h-32" />}
+          {show.isSuccess && (
+            <DetailSection title="Sinopsis" body={show.data.summary} />
+          )}
 
           {/* Temporadas */}
           <DetailSection title="Temporadas">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4">
-              {seasons.map((season) => {
-                return <SeasonPreviewCard key={season.id} season={season} />
-              })}
+              {seasons.isLoading &&
+                Array.from({ length: 4 }, (_, index) => index).map((index) => (
+                  <SeasonPreviewCardSkeleton key={index} />
+                ))}
+
+              {seasons.isSuccess &&
+                seasons.data.map((season) => {
+                  return <SeasonPreviewCard key={season.id} season={season} />
+                })}
             </div>
           </DetailSection>
 
           {/* Reparto */}
           <DetailSection title="Reparto">
             <div className="flex items-stretch justify-center flex-wrap gap-3 md:justify-start md:gap-0">
-              {cast.map((member) => {
-                return <CastMemberCard key={member.id} member={member} />
-              })}
+              {cast.isLoading &&
+                Array.from({ length: 12 }, (_, index) => index).map((index) => (
+                  <CastMemberCardSkeleton key={index} />
+                ))}
+
+              {cast.isSuccess &&
+                cast.data.map((member) => {
+                  return <CastMemberCard key={member.id} member={member} />
+                })}
             </div>
           </DetailSection>
         </section>
 
         <aside className="flex flex-col gap-4">
-          <ShowTechnicalDetailsCard show={show} />
-          <ShowRecommendedCard
-            shows={MOCK_SHOWS.map(toShow)
-              .filter((s) => s.genres.includes(show.genres[0]))
-              .slice(0, 4)}
-          />
+          {show.isLoading && <Skeleton className="w-full h-87.75" />}
+          {show.isSuccess && <ShowTechnicalDetailsCard show={show.data} />}
+
+          {(isPending || show.isLoading) && (
+            <Skeleton className="w-full h-108.5" />
+          )}
+          {isSuccess && show.isSuccess && (
+            <ShowRecommendedCard shows={suggestedShows} />
+          )}
         </aside>
       </main>
     </div>

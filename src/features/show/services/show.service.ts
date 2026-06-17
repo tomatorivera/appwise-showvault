@@ -1,5 +1,9 @@
 import { mazeApi } from "../../../settings/api.config";
+import { toCastMember } from "../mappers/cast.mapper";
+import { toSeason } from "../mappers/season.mapper";
 import { toSearchShow, toShow } from "../mappers/show.mapper";
+import type { CastMemberDTO } from "../types/cast.types";
+import type { SeasonDTO } from "../types/season.types";
 import { type ShowDTO, type IShowService, type SearchShowDTO } from "../types/show.types";
 
 export const showService: IShowService = {
@@ -25,10 +29,17 @@ export const showService: IShowService = {
   },
 
   async getShow(id) {
-    if (!id)
-      throw new Error("Debe ingresar un ID para buscar")
-
     const { data } = await mazeApi.get<ShowDTO>(`/shows/${id}`)
     return toShow(data)
+  },
+
+  async getShowSeasons(id) {
+    const { data } = await mazeApi.get<SeasonDTO[]>(`/shows/${id}/seasons`)
+    return data.map(toSeason)
+  },
+
+  async getShowCasting(id) {
+    const { data } = await mazeApi.get<CastMemberDTO[]>(`/shows/${id}/cast`)
+    return data.map(toCastMember)
   },
 }

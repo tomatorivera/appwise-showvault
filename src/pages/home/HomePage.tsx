@@ -10,8 +10,8 @@ import {
 import InfoCard from '../../shared/ui/InfoCard'
 import { useMemo } from 'react'
 import { useShows } from '../../features/show/hooks/useShows'
-import ShowPreviewCardSkeleton from '../../features/show/components/ShowPreviewCardSkeleton'
 import ShowPreviewCard from '../../features/show/components/ShowPreviewCard'
+import ShowPreviewCardSkeleton from '../../features/show/components/skeletons/ShowPreviewCardSkeleton'
 
 const HomePage = () => {
   const displayedShows = 10
