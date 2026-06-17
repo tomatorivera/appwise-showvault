@@ -2,14 +2,21 @@ import { Search1Outlined } from "@lineiconshq/free-icons"
 import Lineicons from "@lineiconshq/react-lineicons"
 
 interface Props {
+  value: string,
   className?: string
+  onChange: (value: string) => void,
+  onSubmit?: (value: string) => void
 }
 
-const SearchBar = ({ className = "" }: Props) => {
-  // Todo: handle submit
-  
+const SearchBar = ({ value, className = "", onChange, onSubmit }: Props) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onSubmit?.(value)
+  }
+
   return (
     <form
+      onSubmit={handleSubmit}
       className={`
         flex items-center justify-center gap-1 
         bg-background-100 border border-gray-500 rounded-md px-2 py-1 
@@ -27,6 +34,8 @@ const SearchBar = ({ className = "" }: Props) => {
         placeholder="Busca una serie..."
         name="search"
         id="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="flex-1 bg-transparent focus:outline-0 focus:border-0 p-1 text-primary-50"
       />
     </form>

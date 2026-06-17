@@ -1,13 +1,15 @@
 import { Home2Outlined, MenuCheesburgerSolid, Search2Outlined, User4Solid } from "@lineiconshq/free-icons"
 import Lineicons from "@lineiconshq/react-lineicons"
 import Button from "../../shared/ui/Button"
-import SearchBar from "./SearchBar"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAppStore } from "../../app/appStore"
+import SearchBar from "./SearchBar"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [search, setSearch] = useState("")
+
   const navigate = useNavigate();
 
   const isAuthenticated = useAppStore((state) => state.isAuthenticated)
@@ -23,6 +25,14 @@ const Navbar = () => {
       logout()
       navigate('/login')
     }
+  }
+
+  const handleSearch = () => {
+    if (!search.trim())
+      return;
+
+    navigate(`/shows?q=${encodeURIComponent(search.trim())}`);
+    setSearch("") // este componente no se suele rerenderizar
   }
 
   return (
@@ -108,7 +118,7 @@ const Navbar = () => {
               </Button>
             )}
 
-            <SearchBar />
+            <SearchBar value={search} onChange={setSearch} onSubmit={handleSearch} />
           </div>
         </section>
       </nav>
