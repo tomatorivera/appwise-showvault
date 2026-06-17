@@ -1,4 +1,4 @@
-import type { Show, ShowDTO } from "../types/show.types"
+import type { SearchShowDTO, Show, ShowDTO } from "../types/show.types"
 
 
 export function toShow(dto: ShowDTO): Show {
@@ -14,4 +14,8 @@ export function toShow(dto: ShowDTO): Show {
     network: dto.network?.name ?? 'Unknown',
     type: dto.type
   }
+}
+
+export function toSearchShow(dto: SearchShowDTO): Show {
+  return toShow(dto.show)
 }

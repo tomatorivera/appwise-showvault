@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getShows } from "../../../settings/api.config";
+import { showService } from "../services/show.service";
+import type { GetShowsParams } from "../types/show.types";
 
-// Función para pruebas
-export function useShows() {
+export function useShows(params: GetShowsParams = {}) {
   return useQuery({
-    queryKey: ["shows"],
-    queryFn: () => getShows(),
+    queryKey: ["shows", params],
+    queryFn: () => showService.getShows(params.search, params.page),
   })
 }

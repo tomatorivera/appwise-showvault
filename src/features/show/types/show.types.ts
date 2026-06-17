@@ -1,3 +1,5 @@
+/********* MODELS *********/
+
 export type ShowDTO = {
   id: number
   name: string
@@ -10,6 +12,11 @@ export type ShowDTO = {
   network: { name: string } | null
   image: { medium: string; original: string } | null
   summary: string | null
+}
+
+export type SearchShowDTO = {
+  score: number,
+  show: ShowDTO
 }
 
 export type Show = {
@@ -44,3 +51,15 @@ export type SavedShow = Show & {
 }
 
 export type WatchStatus = 'plan-to-watch' | 'watching' | 'completed'
+
+/********* SERVICES *********/
+
+export interface GetShowsParams {
+  search?: string,
+  page?: number
+}
+
+export interface IShowService {
+  getShows: (search?: string, page?: number) => Promise<Show[]>
+  getShow: (id: number) => Promise<Show>
+}

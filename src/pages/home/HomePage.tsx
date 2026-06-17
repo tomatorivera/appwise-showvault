@@ -3,11 +3,21 @@ import Carrousel from "../../shared/ui/Carrousel"
 import HomeHero from "./HomeHero"
 import { Bookmark1Outlined, Rocket5Solid, Search1Outlined, TextParagraphSolid } from "@lineiconshq/free-icons"
 import InfoCard from "../../shared/ui/InfoCard"
-import { MOCK_SHOWS } from "../../features/show/data/showsMock"
+import { useMemo } from "react"
+import { useShows } from "../../features/show/hooks/useShows"
 import ShowPreviewCard from "../../features/show/components/ShowPreviewCard"
-import { toShow } from "../../features/show/mappers/show.mapper"
 
 const HomePage = () => {
+  const displayedShows = 10
+  const { data, isLoading,  isError, isSuccess } = useShows()
+  
+  const bestShows = useMemo(() => {
+    if (isLoading || isError || !data) 
+      return []
+
+    return [...data].sort((a, b) => b.rating - a.rating).slice(0, (displayedShows+1))
+  }, [data])
+
   return (
     <main
       className="
@@ -18,16 +28,18 @@ const HomePage = () => {
     >
       <HomeHero />
 
-      <Carrousel
-        items={MOCK_SHOWS.map(toShow)}
-        renderItem={(show) => (
-          <ShowPreviewCard
-            key={show.id}
-            show={show}
-            className="relative shrink-0 snap-center overflow-hidden w-[80%] sm:w-[50%] sm:h-120 md:w-75 md:h-100"
-          />
-        )}
-      />
+      {isSuccess && (
+        <Carrousel
+          items={bestShows}
+          renderItem={(show) => (
+            <ShowPreviewCard
+              key={show.id}
+              show={show}
+              className="relative shrink-0 snap-center overflow-hidden w-[80%] sm:w-[50%] sm:h-120 md:w-75 md:h-100"
+            />
+          )}
+        />
+      )}
 
       <section className="py-15 max-w-6xl mx-auto">
         <div className="text-2xl text-primary-50 font-semibold font-zalando-expanded flex items-center gap-2">
