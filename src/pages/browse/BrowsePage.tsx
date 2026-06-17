@@ -1,6 +1,6 @@
 import BrowseHero from './BrowseHero'
 import ShowPreviewCard from '../../features/show/components/ShowPreviewCard'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from '../../shared/hooks/useDebounce'
 import { useSearchParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
@@ -8,6 +8,7 @@ import ShowPreviewCardSkeleton from '../../features/show/components/ShowPreviewC
 // import { FILTERS } from '../../features/show/config/browse.config'
 // import type { ShowFilterKey } from '../../features/show/types/show.types'
 import { useShowFilters } from '../../features/show/hooks/useShowFilters'
+import Paginator from '../../shared/ui/Paginator'
 
 const BrowsePage = () => {
   const [rawSearch, setRawSearch] = useState('')
@@ -15,8 +16,9 @@ const BrowsePage = () => {
   const debouncedSearch = useDebounce<string>(rawSearch, 400)
 
   const q = searchParams.get('q') ?? ''
+  const page = Number(searchParams.get('page') ?? 0)
 
-  const { data, isLoading, isSuccess } = useShows({ search: q })
+  const { data, isLoading, isSuccess } = useShows({ search: q, page })
   const { filteredShows, setFilter, filterList } = useShowFilters(data)
 
   useEffect(() => {
@@ -27,6 +29,17 @@ const BrowsePage = () => {
       return prev
     })
   }, [debouncedSearch])
+
+  const setPage = useCallback(
+    (newPage: number) => {
+      setSearchParams((prev) => {
+        if (newPage === 0) prev.delete('page')
+        else prev.set('page', String(newPage))
+        return prev
+      })
+    },
+    [setSearchParams]
+  )
 
   return (
     <main className="bg-background-200 px-4">
@@ -59,7 +72,13 @@ const BrowsePage = () => {
           ))}
       </div>
 
-      {/* Todo: paginator */}
+      <Paginator
+        page={page}
+        onPrev={() => setPage(page - 1)}
+        onNext={() => setPage(page + 1)}
+        hasPrev={page > 0 && !rawSearch.trim()}
+        hasNext={isSuccess && data.length > 0 && !rawSearch.trim()}
+      />
     </main>
   )
 }

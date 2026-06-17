@@ -17,7 +17,7 @@ const Button = ({ children, style, className = '', ...props }: Props) => {
             : 'bg-background-100 hover:bg-neutral-800 focus:bg-neutral-800'
         } 
         font-semibold px-3 py-3 rounded-md text-white transition-colors cursor-pointer flex items-center justify-center gap-2 
-        disabled:cursor-not-allowed disabled:pointer-events-none
+        disabled:cursor-not-allowed disabled:pointer-events-none disabled:bg-background-100/30 disabled:text-grey/50
         ${className}`}
     >
       {children}
