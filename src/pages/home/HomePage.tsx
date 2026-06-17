@@ -5,17 +5,21 @@ import { Bookmark1Outlined, Rocket5Solid, Search1Outlined, TextParagraphSolid } 
 import InfoCard from "../../shared/ui/InfoCard"
 import { useMemo } from "react"
 import { useShows } from "../../features/show/hooks/useShows"
+import ShowPreviewCardSkeleton from "../../features/show/components/ShowPreviewCardSkeleton"
 import ShowPreviewCard from "../../features/show/components/ShowPreviewCard"
 
 const HomePage = () => {
   const displayedShows = 10
-  const { data, isLoading,  isError, isSuccess } = useShows()
-  
+
+  const { data, isLoading, isSuccess } = useShows()
+
   const bestShows = useMemo(() => {
-    if (isLoading || isError || !data) 
+    if (!data) 
       return []
 
-    return [...data].sort((a, b) => b.rating - a.rating).slice(0, (displayedShows+1))
+    return [...data]
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, displayedShows)
   }, [data])
 
   return (
@@ -27,6 +31,18 @@ const HomePage = () => {
       "
     >
       <HomeHero />
+
+      {isLoading && (
+        <Carrousel
+          items={Array.from({ length: displayedShows }, (_, index) => index)}
+          renderItem={(index) => (
+            <ShowPreviewCardSkeleton
+              key={index}
+              className="w-[260.4px] shrink-0 sm:w-85.5 md:w-74.5"
+            />
+          )}
+        />
+      )}
 
       {isSuccess && (
         <Carrousel

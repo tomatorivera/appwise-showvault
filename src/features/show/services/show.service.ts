@@ -4,7 +4,6 @@ import { type ShowDTO, type IShowService, type SearchShowDTO } from "../types/sh
 
 export const showService: IShowService = {
   async getShows(search = "", page = 0) {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
     if (search.trim())
     {
       const { data } = await mazeApi.get<SearchShowDTO[]>(
