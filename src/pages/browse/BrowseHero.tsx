@@ -1,17 +1,13 @@
 import { ChevronDownCircleOutlined, Funnel1Solid } from "@lineiconshq/free-icons"
 import Lineicons from "@lineiconshq/react-lineicons"
 import SearchBar from "../../shared/ui/SearchBar"
-import { useState } from "react"
 
-const BrowseHero = () => {
-  // ### Todo: migrar a una búsqueda debounced
-  const [search, setSearch] = useState("")
+interface Props {
+  value: string,
+  onChange: (value: string) => void
+}
 
-  const handleSearch = (value: string) => {
-    setSearch(value)
-  }
-  // ###
-
+const BrowseHero = ({ value, onChange }: Props) => {
   return (
     <header className="max-w-6xl mx-auto text-primary-50 py-10">
       <section className="mb-10">
@@ -37,7 +33,7 @@ const BrowseHero = () => {
           lg:border lg:border-gray-600 lg:rounded-md
         "
       >
-        <SearchBar className="lg:w-87.5" value={search} onChange={handleSearch} />
+        <SearchBar className="lg:w-87.5" value={value} onChange={onChange} />
 
         <section className="flex gap-2">
           <div className="hidden lg:flex items-center gap-1 lg:me-2">

@@ -1,12 +1,33 @@
 import BrowseHero from "./BrowseHero"
-import { MOCK_SHOWS } from "../../features/show/data/showsMock"
 import ShowPreviewCard from "../../features/show/components/ShowPreviewCard"
-import { toShow } from "../../features/show/mappers/show.mapper"
+import { useEffect, useState } from "react"
+import { useDebounce } from "../../shared/hooks/useDebounce"
+import { useSearchParams } from "react-router-dom"
+import { useShows } from "../../features/show/hooks/useShows"
+import ShowPreviewCardSkeleton from "../../features/show/components/ShowPreviewCardSkeleton"
 
 const BrowsePage = () => {
+  const [rawSearch, setRawSearch] = useState("")
+  const [searchParams, setSearchParams] = useSearchParams()
+  const debouncedSearch = useDebounce<string>(rawSearch, 400)
+
+  useEffect(() => {
+    setSearchParams((prev) => {
+      if (debouncedSearch)
+        prev.set("q", debouncedSearch)
+      else
+        prev.delete("q")
+
+      return prev
+    })
+  }, [debouncedSearch])
+
+  const q = searchParams.get("q") ?? "";
+  const { data, isLoading, isSuccess } = useShows({ search: q })
+
   return (
     <main className="bg-background-200 px-4">
-      <BrowseHero />
+      <BrowseHero value={rawSearch} onChange={setRawSearch} />
 
       <div
         className="
@@ -19,12 +40,17 @@ const BrowsePage = () => {
           pb-10
         "
       >
-        {MOCK_SHOWS.map(toShow).map((show) => (
-          <ShowPreviewCard 
-            key={show.id} 
-            show={show}
-          />
-        ))}
+        {isLoading && (
+          Array.from({ length: 12 }, (_, index) => index).map((index) => (
+            <ShowPreviewCardSkeleton
+              key={index}
+            />
+          ))
+        )}
+
+        {isSuccess &&
+          data.map((show) => <ShowPreviewCard key={show.id} show={show} />)
+        }
       </div>
 
       {/* Todo: paginator */}
