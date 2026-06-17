@@ -52,6 +52,10 @@ export type SavedShow = Show & {
 
 export type WatchStatus = 'plan-to-watch' | 'watching' | 'completed'
 
+export type ShowFilterKey = 'genre' | 'status'
+export type ShowFilterConfig = { key: ShowFilterKey, match: (show: Show, value: string) => boolean }
+export type ShowFilter = { key: ShowFilterKey, values: string[] }
+
 /********* SERVICES *********/
 
 export interface GetShowsParams {
