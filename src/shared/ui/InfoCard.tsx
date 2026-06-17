@@ -1,10 +1,9 @@
-import type React from "react"
+import type React from 'react'
 
 interface Props {
   title: string
   body: string
-  icon: React.ReactNode,
-  
+  icon: React.ReactNode
 }
 
 const InfoCard = ({ title, body, icon }: Props) => {
@@ -14,9 +13,7 @@ const InfoCard = ({ title, body, icon }: Props) => {
       <h3 className="text-primary-50 font-semibold text-xl mt-4 mb-2">
         {title}
       </h3>
-      <p className="text-grey">
-        {body}
-      </p>
+      <p className="text-grey">{body}</p>
     </article>
   )
 }

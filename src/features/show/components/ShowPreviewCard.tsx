@@ -1,11 +1,11 @@
-import type { Show } from "../types/show.types"
+import type { Show } from '../types/show.types'
 
 interface Props {
-  show: Show,
+  show: Show
   className?: string
 }
 
-export default function ShowPreviewCard({ show, className = "" }: Props) {
+export default function ShowPreviewCard({ show, className = '' }: Props) {
   return (
     <article
       className={`

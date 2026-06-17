@@ -1,7 +1,11 @@
-import { Locked2Solid, Paperclip1Solid, Spinner3Solid } from "@lineiconshq/free-icons"
-import Lineicons from "@lineiconshq/react-lineicons"
-import { useAppStore } from "../../../app/appStore"
-import Button from "../../../shared/ui/Button"
+import {
+  Locked2Solid,
+  Paperclip1Solid,
+  Spinner3Solid,
+} from '@lineiconshq/free-icons'
+import Lineicons from '@lineiconshq/react-lineicons'
+import { useAppStore } from '../../../app/appStore'
+import Button from '../../../shared/ui/Button'
 
 const LoginForm = () => {
   const login = useAppStore((state) => state.login)
@@ -11,13 +15,10 @@ const LoginForm = () => {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const formData = new FormData(e.currentTarget);
-    login(
-      formData.get('email') as string,
-      formData.get('pass') as string
-    )
+    const formData = new FormData(e.currentTarget)
+    login(formData.get('email') as string, formData.get('pass') as string)
   }
-  
+
   return (
     <section className="w-full rounded-xl border border-gray-400/50 bg-background-100/70 p-6 shadow-2xl shadow-black/30">
       <h2 className="mb-6 text-2xl font-bold border-b border-gray-400/50 pb-2">

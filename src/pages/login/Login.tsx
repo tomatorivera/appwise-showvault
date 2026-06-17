@@ -1,16 +1,15 @@
-import { useEffect } from "react";
-import { useAppStore } from "../../app/appStore"
-import { useLocation, useNavigate } from "react-router-dom";
-import LoginForm from "../../features/auth/components/LoginForm";
+import { useEffect } from 'react'
+import { useAppStore } from '../../app/appStore'
+import { useLocation, useNavigate } from 'react-router-dom'
+import LoginForm from '../../features/auth/components/LoginForm'
 
 const Login = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isAuthenticated = useAppStore((state) => state.isAuthenticated);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isAuthenticated = useAppStore((state) => state.isAuthenticated)
 
   useEffect(() => {
-    if (!isAuthenticated)
-      return
+    if (!isAuthenticated) return
 
     const from = (location.state as { from?: string })?.from ?? '/'
     navigate(from, { replace: true })
@@ -46,7 +45,10 @@ const Login = () => {
             Regístrate gratis
           </a>
         </p>
-        <button onClick={() => navigate('/')} className="mt-3 text-sm font-semibold text-primary-200 hover:text-primary-100 transition-colors cursor-pointer">
+        <button
+          onClick={() => navigate('/')}
+          className="mt-3 text-sm font-semibold text-primary-200 hover:text-primary-100 transition-colors cursor-pointer"
+        >
           ← Volver al inicio
         </button>
       </div>

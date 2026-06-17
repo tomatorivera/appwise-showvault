@@ -4,7 +4,7 @@ import Button from '../../shared/ui/Button'
 import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <main className="grid place-items-center overflow-hidden bg-background-200 px-4 py-15 text-primary-50 min-h-[calc(100vh-81px)]">

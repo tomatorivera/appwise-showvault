@@ -1,5 +1,5 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useAppStore } from "../../app/appStore"
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { useAppStore } from '../../app/appStore'
 
 const ProtectedRoute = () => {
   const isAuthenticated = useAppStore((state) => state.isAuthenticated)

@@ -1,14 +1,14 @@
-import { Search1Outlined } from "@lineiconshq/free-icons"
-import Lineicons from "@lineiconshq/react-lineicons"
+import { Search1Outlined } from '@lineiconshq/free-icons'
+import Lineicons from '@lineiconshq/react-lineicons'
 
 interface Props {
-  value: string,
+  value: string
   className?: string
-  onChange: (value: string) => void,
+  onChange: (value: string) => void
   onSubmit?: (value: string) => void
 }
 
-const SearchBar = ({ value, className = "", onChange, onSubmit }: Props) => {
+const SearchBar = ({ value, className = '', onChange, onSubmit }: Props) => {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     onSubmit?.(value)

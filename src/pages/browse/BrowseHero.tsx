@@ -1,17 +1,27 @@
-import { ChevronDownCircleOutlined, Funnel1Solid } from "@lineiconshq/free-icons"
-import Lineicons from "@lineiconshq/react-lineicons"
-import SearchBar from "../../shared/ui/SearchBar"
-import type { ShowFilter, ShowFilterKey } from "../../features/show/types/show.types"
+import {
+  ChevronDownCircleOutlined,
+  Funnel1Solid,
+} from '@lineiconshq/free-icons'
+import Lineicons from '@lineiconshq/react-lineicons'
+import SearchBar from '../../shared/ui/SearchBar'
+import type {
+  ShowFilter,
+  ShowFilterKey,
+} from '../../features/show/types/show.types'
 
 interface Props {
-  value: string,
-  onValueChange: (value: string) => void,
-
+  value: string
   filters?: ShowFilter[]
+  onValueChange: (value: string) => void
   onFilterChange?: (key: ShowFilterKey, value: string) => void
 }
 
-const BrowseHero = ({ value, onValueChange, filters, onFilterChange }: Props) => {
+const BrowseHero = ({
+  value,
+  onValueChange,
+  filters,
+  onFilterChange,
+}: Props) => {
   return (
     <header className="max-w-6xl mx-auto text-primary-50 py-10">
       <section className="mb-10">
@@ -55,16 +65,14 @@ const BrowseHero = ({ value, onValueChange, filters, onFilterChange }: Props) =>
               <select
                 name={filterGroup.key}
                 id={filterGroup.key}
-                onChange={(e) => onFilterChange?.(filterGroup.key, e.target.value)}
+                onChange={(e) =>
+                  onFilterChange?.(filterGroup.key, e.target.value)
+                }
                 className="bg-background-100 border border-gray-500 rounded-md p-3"
               >
-                <option value="all">
-                  Todos
-                </option>
+                <option value="all">Todos</option>
                 {filterGroup.values.map((value) => (
-                  <option value={value}>
-                    {value}
-                  </option>
+                  <option value={value}>{value}</option>
                 ))}
               </select>
             ))}

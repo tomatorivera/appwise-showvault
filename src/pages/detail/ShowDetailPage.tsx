@@ -1,16 +1,16 @@
-import DetailHero from "../../features/show/components/DetailHero"
-import DetailSection from "./DetailSection"
-import { MOCK_SEASONS } from "../../features/show/data/seasonsMock"
-import Button from "../../shared/ui/Button"
-import { MOCK_SHOWS } from "../../features/show/data/showsMock"
-import { MOCK_CAST } from "../../features/show/data/castMock"
-import SeasonPreviewCard from "../../features/show/components/SeasonPreviewCard"
-import CastMemberCard from "../../features/show/components/CastMemberCard"
-import ShowTechnicalDetailsCard from "../../features/show/components/ShowTechnicalDetailsCard"
-import ShowRecommendedCard from "../../features/show/components/ShowRecommendedCard"
-import { toSeason } from "../../features/show/mappers/season.mapper"
-import { toCastMember } from "../../features/show/mappers/cast.mapper"
-import { toShow } from "../../features/show/mappers/show.mapper"
+import DetailHero from '../../features/show/components/DetailHero'
+import DetailSection from './DetailSection'
+import { MOCK_SEASONS } from '../../features/show/data/seasonsMock'
+import Button from '../../shared/ui/Button'
+import { MOCK_SHOWS } from '../../features/show/data/showsMock'
+import { MOCK_CAST } from '../../features/show/data/castMock'
+import SeasonPreviewCard from '../../features/show/components/SeasonPreviewCard'
+import CastMemberCard from '../../features/show/components/CastMemberCard'
+import ShowTechnicalDetailsCard from '../../features/show/components/ShowTechnicalDetailsCard'
+import ShowRecommendedCard from '../../features/show/components/ShowRecommendedCard'
+import { toSeason } from '../../features/show/mappers/season.mapper'
+import { toCastMember } from '../../features/show/mappers/cast.mapper'
+import { toShow } from '../../features/show/mappers/show.mapper'
 
 const ShowDetailPage = () => {
   const show = toShow(MOCK_SHOWS[0])
@@ -54,7 +54,11 @@ const ShowDetailPage = () => {
 
         <aside className="flex flex-col gap-4">
           <ShowTechnicalDetailsCard show={show} />
-          <ShowRecommendedCard shows={MOCK_SHOWS.map(toShow).filter(s => s.genres.includes(show.genres[0])).slice(0,4)} />
+          <ShowRecommendedCard
+            shows={MOCK_SHOWS.map(toShow)
+              .filter((s) => s.genres.includes(show.genres[0]))
+              .slice(0, 4)}
+          />
         </aside>
       </main>
     </div>

@@ -1,16 +1,21 @@
-import { Home2Outlined, MenuCheesburgerSolid, Search2Outlined, User4Solid } from "@lineiconshq/free-icons"
-import Lineicons from "@lineiconshq/react-lineicons"
-import Button from "../../shared/ui/Button"
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useAppStore } from "../../app/appStore"
-import SearchBar from "./SearchBar"
+import {
+  Home2Outlined,
+  MenuCheesburgerSolid,
+  Search2Outlined,
+  User4Solid,
+} from '@lineiconshq/free-icons'
+import Lineicons from '@lineiconshq/react-lineicons'
+import Button from '../../shared/ui/Button'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppStore } from '../../app/appStore'
+import SearchBar from './SearchBar'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const isAuthenticated = useAppStore((state) => state.isAuthenticated)
   const logout = useAppStore((state) => state.logout)
@@ -18,21 +23,19 @@ const Navbar = () => {
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-  
+
   const handleLogout = () => {
-    if (confirm('¿Está seguro de que desea cerrar sesión?'))
-    {
+    if (confirm('¿Está seguro de que desea cerrar sesión?')) {
       logout()
       navigate('/login')
     }
   }
 
   const handleSearch = () => {
-    if (!search.trim())
-      return;
+    if (!search.trim()) return
 
-    navigate(`/shows?q=${encodeURIComponent(search.trim())}`);
-    setSearch("") // este componente no se suele rerenderizar
+    navigate(`/shows?q=${encodeURIComponent(search.trim())}`)
+    setSearch('') // este componente no se suele rerenderizar
   }
 
   return (
@@ -118,7 +121,11 @@ const Navbar = () => {
               </Button>
             )}
 
-            <SearchBar value={search} onChange={setSearch} onSubmit={handleSearch} />
+            <SearchBar
+              value={search}
+              onChange={setSearch}
+              onSubmit={handleSearch}
+            />
           </div>
         </section>
       </nav>

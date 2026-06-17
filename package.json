@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --ignore-pattern dist --fix",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,tsx}\"",
     "prepare": "husky"
   },
   "dependencies": {

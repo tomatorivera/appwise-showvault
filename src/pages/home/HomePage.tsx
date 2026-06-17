@@ -1,12 +1,17 @@
-import Lineicons from "@lineiconshq/react-lineicons"
-import Carrousel from "../../shared/ui/Carrousel"
-import HomeHero from "./HomeHero"
-import { Bookmark1Outlined, Rocket5Solid, Search1Outlined, TextParagraphSolid } from "@lineiconshq/free-icons"
-import InfoCard from "../../shared/ui/InfoCard"
-import { useMemo } from "react"
-import { useShows } from "../../features/show/hooks/useShows"
-import ShowPreviewCardSkeleton from "../../features/show/components/ShowPreviewCardSkeleton"
-import ShowPreviewCard from "../../features/show/components/ShowPreviewCard"
+import Lineicons from '@lineiconshq/react-lineicons'
+import Carrousel from '../../shared/ui/Carrousel'
+import HomeHero from './HomeHero'
+import {
+  Bookmark1Outlined,
+  Rocket5Solid,
+  Search1Outlined,
+  TextParagraphSolid,
+} from '@lineiconshq/free-icons'
+import InfoCard from '../../shared/ui/InfoCard'
+import { useMemo } from 'react'
+import { useShows } from '../../features/show/hooks/useShows'
+import ShowPreviewCardSkeleton from '../../features/show/components/ShowPreviewCardSkeleton'
+import ShowPreviewCard from '../../features/show/components/ShowPreviewCard'
 
 const HomePage = () => {
   const displayedShows = 10
@@ -14,8 +19,7 @@ const HomePage = () => {
   const { data, isLoading, isSuccess } = useShows()
 
   const bestShows = useMemo(() => {
-    if (!data) 
-      return []
+    if (!data) return []
 
     return [...data]
       .sort((a, b) => b.rating - a.rating)

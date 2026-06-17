@@ -1,13 +1,13 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../shared/layouts/MainLayout";
-import HomePage from "../pages/home/HomePage";
-import Login from "../pages/login/Login";
-import NotFound from "../pages/error/NotFound";
-import OnlyNavLayout from "../shared/layouts/OnlyNavLayout";
-import ProtectedRoute from "../shared/ui/ProtectedRoute";
-import MyListPage from "../pages/list/MyListPage";
-import BrowsePage from "../pages/browse/BrowsePage";
-import ShowDetailPage from "../pages/detail/ShowDetailPage";
+import { createBrowserRouter } from 'react-router-dom'
+import MainLayout from '../shared/layouts/MainLayout'
+import HomePage from '../pages/home/HomePage'
+import Login from '../pages/login/Login'
+import NotFound from '../pages/error/NotFound'
+import OnlyNavLayout from '../shared/layouts/OnlyNavLayout'
+import ProtectedRoute from '../shared/ui/ProtectedRoute'
+import MyListPage from '../pages/list/MyListPage'
+import BrowsePage from '../pages/browse/BrowsePage'
+import ShowDetailPage from '../pages/detail/ShowDetailPage'
 
 export const router = createBrowserRouter([
   {

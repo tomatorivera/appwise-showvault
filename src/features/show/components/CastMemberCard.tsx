@@ -1,4 +1,4 @@
-import type { CastMember } from "../types/cast.types"
+import type { CastMember } from '../types/cast.types'
 
 interface Props {
   member: CastMember
@@ -15,7 +15,9 @@ const CastMemberCard = ({ member }: Props) => {
 
       <div className="text-center mt-2">
         <p className="font-semibold text-primary-50 mb-1">{member.realName}</p>
-        <p className="italic text-grey leading-none line-clamp-1 text-sm">{member.characterName}</p>
+        <p className="italic text-grey leading-none line-clamp-1 text-sm">
+          {member.characterName}
+        </p>
       </div>
     </article>
   )

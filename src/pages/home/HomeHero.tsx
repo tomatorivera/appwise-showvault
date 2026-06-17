@@ -1,14 +1,14 @@
-import Lineicons from "@lineiconshq/react-lineicons"
-import Button from "../../shared/ui/Button"
-import { Books2Solid, MenuCheesburgerSolid } from "@lineiconshq/free-icons"
-import { useNavigate } from "react-router-dom"
+import Lineicons from '@lineiconshq/react-lineicons'
+import Button from '../../shared/ui/Button'
+import { Books2Solid, MenuCheesburgerSolid } from '@lineiconshq/free-icons'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   className?: string
 }
 
-const HomeHero = ({ className = "" }: Props) => {
-  const navigate = useNavigate();
+const HomeHero = ({ className = '' }: Props) => {
+  const navigate = useNavigate()
 
   return (
     <header

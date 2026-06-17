@@ -41,7 +41,11 @@ const SavedShowCard = ({ show }: Props) => {
           </select>
 
           <button className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-grey/20 text-primary-200 transition-colors hover:bg-white/5 hover:text-primary-50">
-            <Lineicons icon={Bookmark1Solid} size={18} className="cursor-pointer" />
+            <Lineicons
+              icon={Bookmark1Solid}
+              size={18}
+              className="cursor-pointer"
+            />
           </button>
         </div>
       </div>

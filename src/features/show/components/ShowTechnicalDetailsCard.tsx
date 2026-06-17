@@ -1,4 +1,4 @@
-import type { Show } from "../types/show.types"
+import type { Show } from '../types/show.types'
 
 interface Props {
   show: Show
@@ -38,7 +38,7 @@ const ShowTechnicalDetailsCard = ({ show }: Props) => {
 
         <div>
           <p className="text-sm text-grey">Estado</p>
-          
+
           {show.status === 'Running' && (
             <p className="flex items-center gap-1.5 font-medium text-primary-200">
               <span className="size-2 rounded-full bg-secondary-400 animate animate-pulse" />
@@ -47,7 +47,9 @@ const ShowTechnicalDetailsCard = ({ show }: Props) => {
           )}
 
           {(show.status === 'Ended' || show.status === 'Unknown') && (
-            <p className="flex items-center gap-1.5 font-medium text-primary-50">Finalizado</p>
+            <p className="flex items-center gap-1.5 font-medium text-primary-50">
+              Finalizado
+            </p>
           )}
         </div>
       </div>

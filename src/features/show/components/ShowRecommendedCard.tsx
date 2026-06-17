@@ -1,4 +1,4 @@
-import type { Show } from "../types/show.types"
+import type { Show } from '../types/show.types'
 
 interface Props {
   shows: Show[]
