@@ -5,20 +5,17 @@ import { useDebounce } from '../../shared/hooks/useDebounce'
 import { useSearchParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
 import ShowPreviewCardSkeleton from '../../features/show/components/ShowPreviewCardSkeleton'
-// import { FILTERS } from '../../features/show/config/browse.config'
-// import type { ShowFilterKey } from '../../features/show/types/show.types'
 import { useShowFilters } from '../../features/show/hooks/useShowFilters'
 import Paginator from '../../shared/ui/Paginator'
 
 const BrowsePage = () => {
-  const [rawSearch, setRawSearch] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
+  const [rawSearch, setRawSearch] = useState(searchParams.get('q') ?? '')
   const debouncedSearch = useDebounce<string>(rawSearch, 400)
 
-  const q = searchParams.get('q') ?? ''
   const page = Number(searchParams.get('page') ?? 0)
 
-  const { data, isLoading, isSuccess } = useShows({ search: q, page })
+  const { data, isLoading, isSuccess } = useShows({ search: rawSearch, page })
   const { filteredShows, setFilter, filterList } = useShowFilters(data)
 
   useEffect(() => {
