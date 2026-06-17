@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { ShowDTO } from "../services/shows/show.types";
-import { toShow } from "../services/shows/shows.mapper";
+import type { ShowDTO } from "../features/show/types/show.types";
+import { toShow } from "../features/show/mappers/show.mapper";
 
 export const mazeApi = axios.create({
   baseURL: 'https://api.tvmaze.com',
