@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom'
 import type { Show } from '../types/show.types'
+import React from 'react'
 
 interface Props {
   show: Show
   className?: string
 }
 
-export default function ShowPreviewCard({ show, className = '' }: Props) {
+const ShowPreviewCard = React.memo(function ShowPreviewCard({
+  show,
+  className = '',
+}: Props) {
+  console.log(show.id)
+
   return (
     <Link
       to={`/shows/${show.id}`}
@@ -115,4 +121,6 @@ export default function ShowPreviewCard({ show, className = '' }: Props) {
       </div>
     </Link>
   )
-}
+})
+
+export default ShowPreviewCard
