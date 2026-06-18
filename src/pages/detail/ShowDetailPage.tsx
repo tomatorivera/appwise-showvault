@@ -25,9 +25,12 @@ const ShowDetailPage = () => {
   const saveShow = useAppStore((state) => state.saveShow)
   const unsaveShow = useAppStore((state) => state.unsaveShow)
   const isAuthenticated = useAppStore((state) => state.isAuthenticated)
-  const isSaved = useAppStore(
-    (state) =>
-      state.items.some((item) => item.id === show.data?.id) && isAuthenticated
+  const isSaved = useAppStore((state) =>
+    state.user
+      ? (state.items[state.user.id] ?? []).some(
+          (item) => item.id === show.data?.id
+        )
+      : false
   )
 
   const suggestedShows = useMemo(() => {

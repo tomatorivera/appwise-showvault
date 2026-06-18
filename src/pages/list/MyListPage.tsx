@@ -4,11 +4,12 @@ import { useAppStore } from '../../app/appStore'
 import { useMemo, useState } from 'react'
 import type { WatchStatus } from '../../features/watchlist/types/watchlist.types'
 import { Link } from 'react-router-dom'
+import { selectUserItems } from '../../features/watchlist/slices/watchlist.selector'
 
 const MyListPage = () => {
   const [viewList, setViewList] = useState<WatchStatus>('plan-to-watch')
 
-  const savedShows = useAppStore((state) => state.items)
+  const savedShows = useAppStore(selectUserItems)
   const unsaveShow = useAppStore((state) => state.unsaveShow)
   const changeStatus = useAppStore((state) => state.changeStatus)
 
