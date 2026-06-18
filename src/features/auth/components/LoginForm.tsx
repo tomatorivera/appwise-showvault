@@ -115,6 +115,17 @@ const LoginForm = () => {
             1234
           </span>
         </p>
+
+        <p className="text-xs text-grey mt-2">
+          O también{' '}
+          <span className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-primary-50">
+            ana@test.com
+          </span>{' '}
+          /{' '}
+          <span className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-primary-50">
+            1234
+          </span>
+        </p>
       </section>
     </section>
   )

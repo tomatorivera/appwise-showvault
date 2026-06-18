@@ -13,11 +13,25 @@ import { useParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
 import { useMemo } from 'react'
 import ShowRecommendedCard from '../../features/show/components/ShowRecommendedCard'
+import { useAppStore } from '../../app/appStore'
+import { useSaveShow } from '../../features/show/hooks/useSaveShow'
 
 const ShowDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const { show, seasons, cast } = useShow(Number(id))
   const { data: shows, isPending, isSuccess } = useShows()
+  const { handleSave, handleUnsave } = useSaveShow(show.data)
+
+  // La función isSaved por defecto del watchlistSlice no
+  // me sirve para este caso, pues al ser un getter no
+  // modifica ningún estado y el componente no se rerenderiza
+  const isSaved = useAppStore((state) =>
+    state.user
+      ? (state.items[state.user.id] ?? []).some(
+          (item) => item.id === show.data?.id
+        )
+      : false
+  )
 
   const suggestedShows = useMemo(() => {
     if (!shows || !show.data) return []
@@ -40,7 +54,24 @@ const ShowDetailPage = () => {
 
       <main className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px] max-w-6xl mx-auto px-4 py-6">
         <section className="flex flex-col gap-6">
-          <Button style="primary">+ Agregar a mi lista</Button>
+          {show.isSuccess && !isSaved && (
+            <Button
+              style="primary"
+              onClick={handleSave}
+              disabled={show.isLoading}
+            >
+              + Agregar a mi lista
+            </Button>
+          )}
+          {show.isSuccess && isSaved && (
+            <Button
+              style="secondary"
+              onClick={handleUnsave}
+              disabled={show.isLoading}
+            >
+              - Remover de mi lista
+            </Button>
+          )}
 
           {/* Sinopsis */}
           {show.isLoading && <Skeleton className="w-full h-32" />}
@@ -65,7 +96,7 @@ const ShowDetailPage = () => {
 
           {/* Reparto */}
           <DetailSection title="Reparto">
-            <div className="flex items-stretch justify-center flex-wrap gap-3 md:justify-start md:gap-0">
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:gap-2">
               {cast.isLoading &&
                 Array.from({ length: 12 }, (_, index) => index).map((index) => (
                   <CastMemberCardSkeleton key={index} />

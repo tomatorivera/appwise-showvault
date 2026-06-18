@@ -1,22 +1,51 @@
 import ListHero from './ListHero'
-import type { SavedShow } from '../../features/show/types/show.types'
-import { MOCK_SHOWS } from '../../features/show/data/showsMock'
 import SavedShowCard from '../../features/show/components/SavedShowCard'
-import { toShow } from '../../features/show/mappers/show.mapper'
+import { useAppStore } from '../../app/appStore'
+import { useMemo, useState } from 'react'
+import type { WatchStatus } from '../../features/watchlist/types/watchlist.types'
+import { Link } from 'react-router-dom'
+import { selectUserItems } from '../../features/watchlist/slices/watchlist.selector'
 
 const MyListPage = () => {
-  const shows = MOCK_SHOWS.map(toShow).map<SavedShow>((s) => ({
-    ...s,
-    watchStatus: 'plan-to-watch',
-    addedAt: Date.now(),
-  }))
+  const [viewList, setViewList] = useState<WatchStatus>('plan-to-watch')
+
+  const savedShows = useAppStore(selectUserItems)
+  const unsaveShow = useAppStore((state) => state.unsaveShow)
+  const changeStatus = useAppStore((state) => state.changeStatus)
+
+  const displayedShows = useMemo(() => {
+    return savedShows.filter((show) => show.watchStatus === viewList)
+  }, [viewList, savedShows])
+
+  const handleChangeStatus = (showId: number, newList: WatchStatus) => {
+    changeStatus(showId, newList)
+  }
 
   return (
     <main className="bg-background-200 px-4">
-      <ListHero />
+      <ListHero viewList={viewList} onChangeViewList={setViewList} />
 
-      <div
-        className="
+      {displayedShows.length === 0 && (
+        <section className="w-full max-w-6xl mx-auto text-center py-15">
+          <h2 className="font-zalando-expanded text-2xl font-semibold text-primary-50">
+            Ups...
+          </h2>
+          <p className="text-grey">
+            Parece que no hay nada aquí. Revisa la sección de{' '}
+            <Link
+              to="/shows"
+              className="text-primary-200 font-semibold hover:text-primary-300 transition-colors"
+            >
+              exploración
+            </Link>{' '}
+            para agregar algunas series!
+          </p>
+        </section>
+      )}
+
+      {displayedShows.length > 0 && (
+        <div
+          className="
           grid gap-6
           grid-cols-1
           sm:grid-cols-2
@@ -24,11 +53,17 @@ const MyListPage = () => {
           max-w-6xl mx-auto
           pb-10
         "
-      >
-        {shows.map((show) => (
-          <SavedShowCard key={show.id} show={show} />
-        ))}
-      </div>
+        >
+          {displayedShows.map((show) => (
+            <SavedShowCard
+              key={show.id}
+              show={show}
+              onChangeViewList={handleChangeStatus}
+              onUnsaveShow={unsaveShow}
+            />
+          ))}
+        </div>
+      )}
     </main>
   )
 }

@@ -65,6 +65,7 @@ const BrowseHero = ({
               <select
                 name={filterGroup.key}
                 id={filterGroup.key}
+                key={filterGroup.key}
                 onChange={(e) =>
                   onFilterChange?.(filterGroup.key, e.target.value)
                 }
@@ -72,30 +73,12 @@ const BrowseHero = ({
               >
                 <option value="all">Todos</option>
                 {filterGroup.values.map((value) => (
-                  <option value={value}>{value}</option>
+                  <option value={value} key={value}>
+                    {value}
+                  </option>
                 ))}
               </select>
             ))}
-            {/* 
-            <select
-              name="genre"
-              id="genre"
-              className="w-1/2 bg-background-100 border border-gray-500 rounded-md p-3"
-            >
-              <option value="all">Todos los géneros</option>
-              <option value="genero-1">Genero 1</option>
-              <option value="genero-2">Genero 2</option>
-              <option value="genero-3">Genero 3</option>
-            </select>
-            <select
-              name="status"
-              id="status"
-              className="w-1/2 bg-background-100 border border-gray-500 rounded-md p-3"
-            >
-              <option value="all">Cualquier estado</option>
-              <option value="ended">Terminada</option>
-              <option value="running">En emisión</option>
-            </select> */}
           </section>
         )}
       </section>

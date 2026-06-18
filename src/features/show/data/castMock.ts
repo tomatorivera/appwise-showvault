@@ -13,7 +13,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Dale "Barbie" Barbara',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -28,7 +35,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Julia Shumway',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -43,7 +57,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Junior Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -58,7 +79,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Joe McAlister',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -73,7 +101,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Norrie Calvert-Hill',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -88,7 +123,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -103,7 +145,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -118,7 +167,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -133,7 +189,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -148,7 +211,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -163,7 +233,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -178,7 +255,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -193,7 +277,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -208,7 +299,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -223,7 +321,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -238,7 +343,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -253,7 +365,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -268,7 +387,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'James "Big Jim" Rennie',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
   {
@@ -283,7 +409,14 @@ export const MOCK_CAST: CastMemberDTO[] = [
       },
     },
     character: {
+      id: 1,
       name: 'Sam Verdreaux',
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/0/1815.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/0/1815.jpg',
+      },
     },
   },
 ]

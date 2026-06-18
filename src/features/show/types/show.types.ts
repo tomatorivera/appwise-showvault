@@ -1,5 +1,6 @@
 /********* MODELS *********/
 
+import type { WatchStatus } from "../../watchlist/types/watchlist.types"
 import type { CastMember } from "./cast.types"
 import type { Season } from "./season.types"
 
@@ -52,8 +53,6 @@ export type SavedShow = Show & {
   watchStatus: WatchStatus
   addedAt: number // Date.now()
 }
-
-export type WatchStatus = 'plan-to-watch' | 'watching' | 'completed'
 
 export type ShowFilterKey = 'genre' | 'status'
 export type ShowFilterConfig = { key: ShowFilterKey, match: (show: Show, value: string) => boolean }
