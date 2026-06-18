@@ -27,7 +27,7 @@ export const createWatchlistSlice: StateCreator<WatchlistSlice> = (
     }))
   },
 
-  changeSavedStatus: (showId, status) => {
+  changeStatus: (showId, status) => {
     set((state) => ({
       items: state.items.map((item) =>
         item.id === showId ? { ...item, watchStatus: status } : item

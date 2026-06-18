@@ -6,7 +6,7 @@ export type WatchlistSlice = {
   items: SavedShow[]
   saveShow: (show: Show, status: WatchStatus) => void
   unsaveShow: (showId: number) => void
-  changeSavedStatus: (showId: number, status: WatchStatus) => void
+  changeStatus: (showId: number, status: WatchStatus) => void
   isSaved: (showId: number) => boolean
   getStatus: (showId: number) => WatchStatus | null
   totalPerStatus: () => Record<WatchStatus, number>

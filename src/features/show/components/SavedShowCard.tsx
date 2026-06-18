@@ -2,12 +2,14 @@ import { Bookmark1Solid } from '@lineiconshq/free-icons'
 import Lineicons from '@lineiconshq/react-lineicons'
 import type { SavedShow } from '../types/show.types'
 import { formatDate } from '../../../shared/utils/dateUtils'
+import type { WatchStatus } from '../../watchlist/types/watchlist.types'
 
 interface Props {
   show: SavedShow
+  onChangeViewList: (showId: number, value: WatchStatus) => void
 }
 
-const SavedShowCard = ({ show }: Props) => {
+const SavedShowCard = ({ show, onChangeViewList }: Props) => {
   return (
     <article className="flex h-37.5 overflow-hidden rounded-xl border border-grey/15 bg-background-100/50 text-primary-50">
       <img
@@ -34,10 +36,16 @@ const SavedShowCard = ({ show }: Props) => {
         </div>
 
         <div className="mt-3 flex items-center gap-2">
-          <select className="h-9 min-w-0 flex-1 rounded-lg border border-primary-400/30 bg-primary-600 px-3 text-sm font-semibold text-primary-50 outline-none transition-colors hover:bg-primary-500 focus:ring-2 focus:ring-primary-300/40 cursor-pointer">
-            <option>Quiero ver</option>
-            <option>Viendo</option>
-            <option>Terminado</option>
+          <select
+            value={show.watchStatus}
+            onChange={(e) =>
+              onChangeViewList(show.id, e.target.value as WatchStatus)
+            }
+            className="h-9 min-w-0 flex-1 rounded-lg border border-primary-400/30 bg-primary-600 px-3 text-sm font-semibold text-primary-50 outline-none transition-colors hover:bg-primary-500 focus:ring-2 focus:ring-primary-300/40 cursor-pointer"
+          >
+            <option value="plan-to-watch">Quiero ver</option>
+            <option value="watching">Viendo</option>
+            <option value="completed">Terminado</option>
           </select>
 
           <button className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-grey/20 text-primary-200 transition-colors hover:bg-white/5 hover:text-primary-50">
