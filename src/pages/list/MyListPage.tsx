@@ -17,7 +17,7 @@ const MyListPage = () => {
     return savedShows.filter((show) => show.watchStatus === viewList)
   }, [viewList, savedShows])
 
-  const handleChangeList = (showId: number, newList: WatchStatus) => {
+  const handleChangeStatus = (showId: number, newList: WatchStatus) => {
     changeStatus(showId, newList)
   }
 
@@ -58,7 +58,7 @@ const MyListPage = () => {
             <SavedShowCard
               key={show.id}
               show={show}
-              onChangeViewList={handleChangeList}
+              onChangeViewList={handleChangeStatus}
               onUnsaveShow={unsaveShow}
             />
           ))}

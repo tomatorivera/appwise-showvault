@@ -9,22 +9,22 @@ import DetailHeroSkeleton from '../../features/show/components/skeletons/DetailH
 import { Skeleton } from '../../shared/ui/Skeleton'
 import SeasonPreviewCardSkeleton from '../../features/show/components/skeletons/SeasonPreviewCardSkeleton'
 import CastMemberCardSkeleton from '../../features/show/components/skeletons/CastMemberCardSkeleton'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
 import { useMemo } from 'react'
 import ShowRecommendedCard from '../../features/show/components/ShowRecommendedCard'
 import { useAppStore } from '../../app/appStore'
+import { useSaveShow } from '../../features/show/hooks/useSaveShow'
 
 const ShowDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const { show, seasons, cast } = useShow(Number(id))
   const { data: shows, isPending, isSuccess } = useShows()
+  const { handleSave, handleUnsave } = useSaveShow(show.data)
 
-  const navigate = useNavigate()
-
-  const saveShow = useAppStore((state) => state.saveShow)
-  const unsaveShow = useAppStore((state) => state.unsaveShow)
-  const isAuthenticated = useAppStore((state) => state.isAuthenticated)
+  // La función isSaved por defecto del watchlistSlice no
+  // me sirve para este caso, pues al ser un getter no
+  // modifica ningún estado y el componente no se rerenderiza
   const isSaved = useAppStore((state) =>
     state.user
       ? (state.items[state.user.id] ?? []).some(
@@ -41,22 +41,6 @@ const ShowDetailPage = () => {
       .sort((a, b) => b.rating - a.rating)
       .slice(0, 3)
   }, [shows, show.data])
-
-  const handleSave = () => {
-    if (!isAuthenticated)
-      navigate('/login', { state: { from: location.pathname }, replace: true })
-    if (!show.data) return
-
-    saveShow(show.data, 'plan-to-watch')
-  }
-
-  const handleUnsave = () => {
-    if (!isAuthenticated)
-      navigate('/login', { state: { from: location.pathname }, replace: true })
-    if (!show.data) return
-
-    unsaveShow(show.data.id)
-  }
 
   return (
     <div
