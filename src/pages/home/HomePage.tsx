@@ -36,6 +36,7 @@ const HomePage = () => {
     >
       <HomeHero />
 
+      <h3 className='text-center text-primary-50 text-2xl font-semibold font-zalando-expanded'>Grandes éxitos</h3>
       {isLoading && (
         <Carrousel
           items={Array.from({ length: displayedShows }, (_, index) => index)}

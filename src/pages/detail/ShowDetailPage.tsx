@@ -96,7 +96,7 @@ const ShowDetailPage = () => {
 
           {/* Reparto */}
           <DetailSection title="Reparto">
-            <div className="flex items-stretch justify-center flex-wrap gap-3 md:justify-start md:gap-0">
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:gap-2">
               {cast.isLoading &&
                 Array.from({ length: 12 }, (_, index) => index).map((index) => (
                   <CastMemberCardSkeleton key={index} />
