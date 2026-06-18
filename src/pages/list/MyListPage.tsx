@@ -25,12 +25,12 @@ const MyListPage = () => {
       <ListHero viewList={viewList} onChangeViewList={setViewList} />
 
       {displayedShows.length === 0 && (
-        <section className="w-full max-w-6xl mx-auto pb-10 text-center">
+        <section className="w-full max-w-6xl mx-auto text-center py-15">
           <h2 className="font-zalando-expanded text-2xl font-semibold text-primary-50">
             Ups...
           </h2>
           <p className="text-grey">
-            Parece que no guardaste nada aún. Revisa la sección de{' '}
+            Parece que no hay nada aquí. Revisa la sección de{' '}
             <Link
               to="/shows"
               className="text-primary-200 font-semibold hover:text-primary-300 transition-colors"
