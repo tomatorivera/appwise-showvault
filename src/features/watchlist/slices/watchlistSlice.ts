@@ -74,24 +74,25 @@ export const createWatchlistSlice: StateCreator<AuthSlice & WatchlistSlice, [], 
   },
    
   totalPerStatus: () => {
+    const baseTotal = {
+      'plan-to-watch': 0,
+      watching: 0,
+      completed: 0,
+    } as Record<WatchStatus, number>
+
     const userId = get().user?.id
     if (!userId) 
-      return {
-        'plan-to-watch': 0,
-        watching: 0,
-        completed: 0,
-      } as Record<WatchStatus, number>
+      return baseTotal
+
+    if (!get().items[userId])
+      return baseTotal
 
     return get().items[userId].reduce(
       (acc, item) => {
         acc[item.watchStatus]++
         return acc
       },
-      { 
-        'plan-to-watch': 0, 
-        watching: 0, 
-        completed: 0 
-      } as Record<WatchStatus, number>
+      baseTotal
     )
   }
 })

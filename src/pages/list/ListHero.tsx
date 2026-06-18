@@ -1,6 +1,7 @@
 import { Bookmark1Outlined } from '@lineiconshq/free-icons'
 import Lineicons from '@lineiconshq/react-lineicons'
 import type { WatchStatus } from '../../features/watchlist/types/watchlist.types'
+import { useAppStore } from '../../app/appStore'
 
 interface Props {
   viewList: WatchStatus
@@ -8,10 +9,14 @@ interface Props {
 }
 
 const ListHero = ({ viewList, onChangeViewList }: Props) => {
+  const totalPerStatus = useAppStore((state) => state.totalPerStatus)
+
   const btnBase =
-    'rounded-xl text-sm md:text-base px-3 py-2 md:px-5 font-medium transition-colors cursor-pointer'
-  const btnActive = 'bg-primary-100 text-primary-700'
-  const btnInactive = 'text-grey hover:bg-white/5 hover:text-primary-50'
+    'rounded-xl text-sm md:text-base px-3 py-2 md:px-5 font-medium transition-colors cursor-pointer [&_span]:text-xs [&_span]:ms-1.5 [&_span]:text-center'
+  const btnActive =
+    'bg-primary-100 text-primary-700 [&_span]:bg-primary-700/70 [&_span]:text-primary-100 [&_span]:rounded-full [&_span]:py-1 [&_span]:px-1.5'
+  const btnInactive =
+    'text-grey hover:bg-white/5 hover:text-primary-50 [&_span]:bg-background-200/70 [&_span]:py-1 [&_span]:px-1.5 [&_span]:rounded-full'
 
   return (
     <header className="max-w-6xl mx-auto text-primary-50 py-10 md:flex md:items-center">
@@ -40,6 +45,7 @@ const ListHero = ({ viewList, onChangeViewList }: Props) => {
             className={`${btnBase} ${viewList === 'plan-to-watch' ? btnActive : btnInactive}`}
           >
             Quiero ver
+            <span>{totalPerStatus()['plan-to-watch']}</span>
           </button>
 
           <button
@@ -47,6 +53,7 @@ const ListHero = ({ viewList, onChangeViewList }: Props) => {
             className={`${btnBase} ${viewList === 'watching' ? btnActive : btnInactive}`}
           >
             Viendo
+            <span>{totalPerStatus().watching}</span>
           </button>
 
           <button
@@ -54,6 +61,7 @@ const ListHero = ({ viewList, onChangeViewList }: Props) => {
             className={`${btnBase} ${viewList === 'completed' ? btnActive : btnInactive}`}
           >
             Terminadas
+            <span>{totalPerStatus().completed}</span>
           </button>
         </nav>
       </section>
