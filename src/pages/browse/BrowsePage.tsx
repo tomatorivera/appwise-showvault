@@ -15,7 +15,7 @@ const BrowsePage = () => {
 
   const page = Number(searchParams.get('page') ?? 0)
 
-  const { data, isLoading, isSuccess } = useShows({ search: rawSearch, page })
+  const { data, isLoading, isSuccess } = useShows({ search: debouncedSearch, page })
   const { filteredShows, setFilter, filterList } = useShowFilters(data)
 
   useEffect(() => {
