@@ -7,9 +7,10 @@ import type { WatchStatus } from '../../watchlist/types/watchlist.types'
 interface Props {
   show: SavedShow
   onChangeViewList: (showId: number, value: WatchStatus) => void
+  onUnsaveShow: (showId: number) => void
 }
 
-const SavedShowCard = ({ show, onChangeViewList }: Props) => {
+const SavedShowCard = ({ show, onChangeViewList, onUnsaveShow }: Props) => {
   return (
     <article className="flex h-37.5 overflow-hidden rounded-xl border border-grey/15 bg-background-100/50 text-primary-50">
       <img
@@ -48,7 +49,11 @@ const SavedShowCard = ({ show, onChangeViewList }: Props) => {
             <option value="completed">Terminado</option>
           </select>
 
-          <button className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-grey/20 text-primary-200 transition-colors hover:bg-white/5 hover:text-primary-50">
+          <button
+            onClick={() => onUnsaveShow(show.id)}
+            title="Eliminar de mi lista"
+            className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-grey/20 text-primary-200 transition-colors hover:bg-white/5 hover:text-primary-50"
+          >
             <Lineicons
               icon={Bookmark1Solid}
               size={18}
