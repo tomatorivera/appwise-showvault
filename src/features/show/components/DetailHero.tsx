@@ -33,7 +33,10 @@ const DetailHero = ({ show }: Props) => {
 
             {show.genres.map((genre) => {
               return (
-                <span className="bg-primary-500/70 text-gray-100/85 text-xs rounded-md px-2 py-1">
+                <span
+                  key={genre}
+                  className="bg-primary-500/70 text-gray-100/85 text-xs rounded-md px-2 py-1"
+                >
                   {genre}
                 </span>
               )

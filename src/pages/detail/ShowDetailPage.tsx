@@ -9,15 +9,26 @@ import DetailHeroSkeleton from '../../features/show/components/skeletons/DetailH
 import { Skeleton } from '../../shared/ui/Skeleton'
 import SeasonPreviewCardSkeleton from '../../features/show/components/skeletons/SeasonPreviewCardSkeleton'
 import CastMemberCardSkeleton from '../../features/show/components/skeletons/CastMemberCardSkeleton'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useShows } from '../../features/show/hooks/useShows'
 import { useMemo } from 'react'
 import ShowRecommendedCard from '../../features/show/components/ShowRecommendedCard'
+import { useAppStore } from '../../app/appStore'
 
 const ShowDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const { show, seasons, cast } = useShow(Number(id))
   const { data: shows, isPending, isSuccess } = useShows()
+
+  const navigate = useNavigate()
+
+  const saveShow = useAppStore((state) => state.saveShow)
+  const unsaveShow = useAppStore((state) => state.unsaveShow)
+  const isAuthenticated = useAppStore((state) => state.isAuthenticated)
+  const isSaved = useAppStore(
+    (state) =>
+      state.items.some((item) => item.id === show.data?.id) && isAuthenticated
+  )
 
   const suggestedShows = useMemo(() => {
     if (!shows || !show.data) return []
@@ -27,6 +38,22 @@ const ShowDetailPage = () => {
       .sort((a, b) => b.rating - a.rating)
       .slice(0, 3)
   }, [shows, show.data])
+
+  const handleSave = () => {
+    if (!isAuthenticated)
+      navigate('/login', { state: { from: location.pathname }, replace: true })
+    if (!show.data) return
+
+    saveShow(show.data, 'plan-to-watch')
+  }
+
+  const handleUnsave = () => {
+    if (!isAuthenticated)
+      navigate('/login', { state: { from: location.pathname }, replace: true })
+    if (!show.data) return
+
+    unsaveShow(show.data.id)
+  }
 
   return (
     <div
@@ -40,7 +67,24 @@ const ShowDetailPage = () => {
 
       <main className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px] max-w-6xl mx-auto px-4 py-6">
         <section className="flex flex-col gap-6">
-          <Button style="primary">+ Agregar a mi lista</Button>
+          {show.isSuccess && !isSaved && (
+            <Button
+              style="primary"
+              onClick={handleSave}
+              disabled={show.isLoading}
+            >
+              + Agregar a mi lista
+            </Button>
+          )}
+          {show.isSuccess && isSaved && (
+            <Button
+              style="secondary"
+              onClick={handleUnsave}
+              disabled={show.isLoading}
+            >
+              - Remover de mi lista
+            </Button>
+          )}
 
           {/* Sinopsis */}
           {show.isLoading && <Skeleton className="w-full h-32" />}
