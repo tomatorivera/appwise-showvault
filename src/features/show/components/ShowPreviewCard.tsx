@@ -14,9 +14,7 @@ export default function ShowPreviewCard({ show, className = '' }: Props) {
         group relative overflow-hidden rounded-2xl
         bg-background-100 border border-primary-500/15
         transition-all duration-300
-        hover:-translate-y-2
-        hover:border-primary-500/40
-        hover:shadow-[0_10px_40px_rgba(103,96,253,0.15)]
+        hover:-translate-y-2 hover:border-primary-500/40 hover:shadow-[0_10px_40px_rgba(103,96,253,0.15)] hover:z-10
         ${className}
       `}
     >
