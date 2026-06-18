@@ -73,7 +73,9 @@ const BrowseHero = ({
               >
                 <option value="all">Todos</option>
                 {filterGroup.values.map((value) => (
-                  <option value={value}>{value}</option>
+                  <option value={value} key={value}>
+                    {value}
+                  </option>
                 ))}
               </select>
             ))}
