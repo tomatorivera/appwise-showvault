@@ -11,8 +11,6 @@ const ShowPreviewCard = React.memo(function ShowPreviewCard({
   show,
   className = '',
 }: Props) {
-  console.log(show.id)
-
   return (
     <Link
       to={`/shows/${show.id}`}
